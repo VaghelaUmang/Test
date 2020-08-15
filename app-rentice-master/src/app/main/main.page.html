@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-button (click)="quickAdd()" class="width-100 button button-positive button-block">
+          {{ 'Repeat Last Entry' | translate }}
+    </ion-button>
+    <ion-buttons slot="end">
+      <ion-card>
+      <ion-button (click)="goSearch()"> {{ 'Quick Search' | translate }}
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-card>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="bListView">
+    <ion-list>
+      <ion-item *ngFor="let item of mainCatList" (click)="clickCategory(item)" style="cursor: pointer;">
+        {{item.name}}
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="!bListView">
+    <div class="col col-50" *ngFor="let item of mainCatList" style="display: inline-block;">
+      <a (click)="clickCategory(item)" style="display:block;">
+        <!--<img ng-src="http://artisanideas.co.nz/itab/database/styled/{{item.main_image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">-->
+        <img *ngIf="(!global.bDownloadMain || isOnline)" src="https://artisanideas.co.nz/itab/page109/page110/styled-4/{{item.main_image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;" alt="{{item.name}}">
+        <img *ngIf="global.bDownloadMain && global.isCordova && !isOnline" src="{{item.cordova_image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;" alt="{{item.name}}">
+        <img *ngIf="global.bDownloadMain && !global.isCordova && !isOnline" src="{{item.local_image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;" alt="{{item.name}}">
+      </a>
+    </div>
+  </div>
+</ion-content>

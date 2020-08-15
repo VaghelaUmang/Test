@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{'Managed Staff' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="help-card">
+      <ion-img src="/assets/staff_banner.png"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>{{'Access the Student Log and Timesheets of' | translate}}</ion-card-subtitle>
+        <ion-card-title>{{'Your Staff' | translate}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{'Go to the' | translate}}
+          <u routerLink="/link-accounts">{{'Link Accounts page' | translate}}</u> 
+          {{'to setup viewing your workers content' | translate}}
+        </p>
+      </ion-card-content>
+       <ion-button onclick="window.open('https://www.artisanideas.co.nz/itab/users/page72/contact/', '_blank', 'location=yes')" expand="full">
+        {{'Add New Staff Member' | translate}}
+      </ion-button>
+  </ion-card>
+  <ion-list lines="none">
+    <ion-item *ngFor="let item of userList" item="item" (click)="goStaffMenu(item)" routerLink="/staff-menu">
+      <ion-icon slot="start" color="medium" name="contact"></ion-icon>
+      <ion-label>{{item.user_firstname}} {{item.user_lastname}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

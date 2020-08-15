@@ -1,0 +1,18 @@
+.project-list,
+ion-segment {
+	margin-top: 15px;
+}
+
+
+ion-segment-button {
+  width: 30%;
+}
+
+.width-100 {
+	width: 90%;
+	margin: 0 auto;
+	display: block;
+	.button {
+		width: 100%;
+	}
+}

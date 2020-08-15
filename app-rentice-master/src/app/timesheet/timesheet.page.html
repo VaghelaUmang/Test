@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+   <ion-buttons slot="start">
+    <ion-button routerLink="/home">
+      <ion-icon slot="icon-only" name="home"></ion-icon>
+    </ion-button>
+   </ion-buttons>
+    <ion-title>{{'Timesheets' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<div style="position: fixed;z-index: -10;top: -5000px;">
+		<table style="display: block;" id="my-table-5" [innerHTML]="tableHtml"></table>
+	</div>
+	<div class="width-100">
+		<ion-button routerLink="/new-ts-entry" color="success">{{'New Time Sheet Entry' | translate}}</ion-button>
+	</div>
+	<div class="top-list">
+			<ion-item>
+		    <ion-label>{{'Project' | translate}}</ion-label>
+	      <ion-select multiple="true" placeholder="{{'Select One' | translate}}" [(ngModel)]="data.address" (ionChange)="showEntries()">
+		      <ion-select-option *ngFor="let item of addressList">{{item.address}}</ion-select-option>
+		    </ion-select>
+			</ion-item>
+			<ion-item>
+		    <ion-label>{{'Users' | translate}}</ion-label>
+	      <ion-select multiple="true" placeholder="{{'Select One' | translate}}" [(ngModel)]="data.user" (ionChange)="loadTimesheets()">
+		      <ion-select-option *ngFor="let item of userList">{{item.user_firstname}}</ion-select-option>
+		    </ion-select>
+			</ion-item>
+			<ion-item>
+		    <ion-label>{{'Show Dates' | translate}}</ion-label>
+		    <ion-checkbox slot="start" [(ngModel)]="data.showDates" (ionChange)="showEntries()"></ion-checkbox>
+		  </ion-item>
+		  <ion-item *ngIf="data.showDates">
+			  <ion-label>{{'Date (from)' | translate}}</ion-label>
+			  <ion-datetime [(ngModel)]="data.date_from" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" (ionChange)="showEntries()"></ion-datetime>
+			</ion-item>
+			<ion-item *ngIf="data.showDates">
+			  <ion-label>{{'Date (to)' | translate}}</ion-label>
+			  <ion-datetime [(ngModel)]="data.date_to" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" (ionChange)="showEntries()"></ion-datetime>
+			</ion-item>
+			<div class="width-100">
+	    	<ion-button (click)="clearFilter()">{{'Clear Filter' | translate}}</ion-button>
+	    </div>
+			<!--<div class="width-100">
+	    	<ion-button (click)="showEntries()">Show Entries</ion-button>
+	    </div>-->
+	    <div class="width-100">
+	    	<ion-button (click)="exportEntries()">{{'Email your timesheet' | translate}}</ion-button>
+	    </div>
+  </div>
+  <div>
+    <ion-list>
+      <ion-item *ngFor="let item of timesheetList" item="item" (click)="goTimesheetItem(item)">
+      	<ion-thumbnail slot="start">
+			       <img style="width: 110px;" *ngIf="item.image" src="https://www.artisanideas.co.nz/itab/database/styled/{{item.image | reverseStr}}">
+        			<img style="width: 110px;" *ngIf="!item.image" src="assets/img/YIoJsnszRE6Y948PO6u7_default-news-image.jpg">
+	  		</ion-thumbnail>
+	  		<ion-label>
+	        <div>
+	          <span style="color: blue">{{'Date' | translate}} : </span>
+	          {{item.date}}
+	        </div>
+	        <div>
+	          <span style="color: blue">{{'Address' | translate}} : </span>
+	          {{item.address}}
+	        </div>
+	        <div>
+	          <span style="color: blue">{{'Hours' | translate}} : </span>
+	          {{item.hours}}
+	        </div>
+	        <div>
+	          <span style="color: blue">{{'Notes' | translate}} : </span>
+	          {{item.notes}}
+	        </div>
+	      </ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+	    <ion-infinite-scroll-content
+	      loadingSpinner="bubbles"
+	      loadingText="Loading more data...">
+	    </ion-infinite-scroll-content>
+	  </ion-infinite-scroll>
+  </div>
+</ion-content>

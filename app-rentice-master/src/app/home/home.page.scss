@@ -1,0 +1,32 @@
+.menu-card {
+  text-align: center;
+  color: white;
+  background-color: blue;
+  font-weight:bold;
+  opacity: 0.7;
+  margin: 0 !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  padding-left: 5px;
+  .card-content {
+
+  }
+}
+
+ion-content {
+    --background: url('../../assets/img/login-bg.jpg') no-repeat center center / cover;
+    background-size: cover !important;
+    --background-size: cover !important;
+		-webkit-background-size: cover !important;
+		-moz-background-size: cover !important;
+		-o-background-size: cover !important;
+}
+
+.manual-remove-top-padding {
+    padding-top: 0px !important;
+}
+
+ion-toolbar {
+--background: transparent;
+--ion-color-base: transparent !important;
+}

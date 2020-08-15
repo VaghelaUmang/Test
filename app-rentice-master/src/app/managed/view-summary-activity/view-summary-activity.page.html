@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+	  <ion-buttons slot="start">
+	    <ion-button routerLink="/staff-view-summary-sub">
+	      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+	    </ion-button>
+	  </ion-buttons>
+    <ion-title *ngIf="subCat">{{subCat.name}}</ion-title>
+    <!--<ion-buttons slot="end">
+	    <ion-button routerLink="/student-log">
+	      View as Chart
+	    </ion-button>
+	  </ion-buttons>-->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-button expand="full" (click)="exportPDF()">{{'Export as PDF' | translate}}</ion-button>
+	<ion-label color="primary" padding>
+		<h2>
+			{{'View_Summary_Activity_Text1' | translate}}
+		</h2>
+	</ion-label>
+	<div>
+  	<ion-list>
+        <ion-item style="border-bottom: solid 1px grey;cursor: pointer;" lines="none" *ngFor="let item of renderList" item="item" (click)="goItem(item)">
+		  		<ion-label slot="start">
+	          <div style="white-space: normal;">
+	            {{item.name}}
+	          </div>
+	        </ion-label>
+	        <ion-label slot="end">
+	          <div>
+	            {{item.hour}}
+	          </div>
+	        </ion-label>
+        </ion-item>
+      </ion-list>
+  </div>
+</ion-content>

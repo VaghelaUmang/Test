@@ -1,0 +1,138 @@
+<ion-header>
+  <ion-toolbar>
+   	<ion-buttons slot="start">
+      <ion-button (click)="returnPage()">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>{{'Return without sending' | translate}}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="help-card" id="request_export">
+      <ion-img src="/assets/request_review.jpg"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>{{'Check your' | translate}} </ion-card-subtitle>
+        <ion-card-title>{{'Review Request Summary' | translate}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{'Request_Summary_TEXT1' | translate}}</p>
+        <p>{{'Request_Summary_TEXT2' | translate}}</p>
+        <p>{{'Request_Summary_TEXT3' | translate}}</p>
+        <p>{{'Request_Summary_TEXT4' | translate}}</p>
+      </ion-card-content>
+  </ion-card>
+  <ion-row *ngIf="!isReadonly">
+    <ion-col>
+      <ion-button expand="block" (click)="goRecordOfWork()">{{'Go to your Record of Work' | translate}}</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button expand="block" (click)="goQualification()">{{'Go to your Qualification' | translate}}</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-card>
+    <ion-item lines="none">
+  			  <ion-label><b>{{'Trainee Name' | translate}}:</b></ion-label>
+  			  {{user.user_firstname}} {{user.user_lastname}}
+    </ion-item>
+    <ion-item lines="none">
+  			  <ion-label><b>{{'Qualification' | translate}}:</b></ion-label>
+  			  {{qualName}}
+    </ion-item>
+    <ion-item lines="none">
+  			  <ion-label><b>{{'Assessor' | translate}}:</b></ion-label>
+  			 {{user.tutorName}}
+    </ion-item>
+    <ion-item>
+          <ion-label><b>{{'Date' | translate}}:</b></ion-label>
+  			  <!-- <ion-datetime [(ngModel)]="data.date" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY"></ion-datetime> -->
+          <ion-text>{{data.date}}</ion-text>
+    </ion-item>
+    <ion-item>
+  			  <ion-label><b>{{'Note' | translate}}:</b></ion-label>
+  			  <ion-text text-wrap class="text-right notes">{{data.notes}}</ion-text>
+    </ion-item>
+  </ion-card>
+  <ion-card *ngIf="currentStatus !=2 && isReadonly && !isSelfComplete">
+    <ion-item>
+        <ion-label position="stacked" style="font-size: 14px;">Assessor Note:</ion-label>
+        <ion-textarea rows="7" cols="20" [(ngModel)]="data.tutor_notes" readonly></ion-textarea >
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-img  *ngIf="data.photo1 && data.photo1.length>0" src="https://www.artisanideas.co.nz/itab/database/styled/{{data.photo1 | reverseStr}}"></ion-img>
+        <ion-img *ngIf="data.photo1.length<1" src="/assets/placeholder.png"></ion-img>
+      </ion-col>
+      <ion-col>
+        <ion-img  *ngIf="data.photo2 && data.photo2.length>0" src="https://www.artisanideas.co.nz/itab/database/styled/{{data.photo2 | reverseStr}}"></ion-img>
+        <ion-img *ngIf="data.photo2.length<1" src="/assets/placeholder.png"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-card>
+    <ion-card-title>{{'Qualification Areas' | translate}}</ion-card-title>
+    <ion-list *ngFor="let item of unitSummary" class="main-item">
+      <ion-list-header>
+        <ion-row>
+          <ion-col class="name" (click)="item.unit.expand = !item.unit.expand">
+            <h4>{{item.unit.unit}} {{item.unit.name}}</h4>
+          </ion-col>
+          <ion-col class="text-right">
+            <h6 [ngClass]="{'inprogress': item.unit.status == 'In Progress', 'finished': item.unit.status == 'Finished', 'completed': item.unit.status == 'Completed'}">{{item.unit.status}}</h6>
+          </ion-col>
+        </ion-row>
+      </ion-list-header>
+      <ion-list *ngIf="item.unit.expand" style="margin-left: 20px;">
+        <ion-item *ngFor="let subitem of item.element" class="sub-item">
+          <ion-row>
+            <ion-col class="name">
+              <h5>{{subitem.name}}</h5>
+            </ion-col>
+            <ion-col class="text-right">
+              <h6 [ngClass]="{'inprogress': subitem.status=='In Progress', 'finished': subitem.status=='Finished', 'completed': subitem.status=='Completed'}">{{subitem.status}}</h6>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </ion-list>
+    <!-- <ion-list>
+      <ion-item>
+        <ion-label>Qual Two</ion-label>
+      </ion-item>
+      <ion-item-sliding>
+          <ion-item>
+            <ion-label>Sub Qual 2.1</ion-label>
+          </ion-item>
+            <ion-item-options side="end">
+            <ion-item-option color="danger">{{'Return to In-Progress' | translate}}</ion-item-option>
+          </ion-item-options>
+      </ion-item-sliding>
+    </ion-list> -->
+  </ion-card>
+  <ion-card>
+  	<ion-card-title>{{'Record of Work Entries' | translate}}</ion-card-title>    
+    <ion-list>
+      <ion-item-sliding *ngFor="let item of rowstatusList;" #slidingItem>
+        <ion-item style="cursor: pointer;" (click)="goStudentItem(slidingItem, item)">
+          <ion-thumbnail slot="start">
+             <img style="width: 110px;" *ngIf="item.photo" src="https://www.artisanideas.co.nz/itab/database/styled/{{item.photo | reverseStr}}">
+              <img style="width: 110px;" *ngIf="!item.photo" src="assets/img/YIoJsnszRE6Y948PO6u7_default-news-image.jpg">
+          </ion-thumbnail>
+          <ion-label text-wrap>{{item.inventory_item}}</ion-label>
+        </ion-item>
+        <ion-item-options side="end" *ngIf="!isReadonly">
+  	      <ion-item-option color="danger" (click)="removeFromRowstatus(slidingItem, item)">UnSelect</ion-item-option>
+  	    </ion-item-options>
+  	  </ion-item-sliding>
+    </ion-list>
+  </ion-card>
+  <ion-button *ngIf="!isReadonly" expand="block" (click)="saveContinue()">Save & Continue</ion-button>
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block" (click)="exportPDF()">{{'Export as PDF' | translate}}</ion-button>
+    </ion-col>
+    <ion-col *ngIf="!isReadonly && !isSelfComplete">
+      <ion-button expand="block" (click)="notifyUser()">{{'Notify your Assessor' | translate}}</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

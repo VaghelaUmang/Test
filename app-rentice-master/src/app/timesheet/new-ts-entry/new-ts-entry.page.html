@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+  	   <ion-buttons slot="start">
+    <ion-button routerLink="/timesheet">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <ion-title>{{'New Timesheet Entry' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-card class="menu-card" routerLink="/main">
+        <ion-card-content>{{'New_Ts_Entry_Text1' | translate}}<br>
+        <b>{{'New_Ts_Entry_Text2' | translate}}</b>
+    </ion-card-content>
+    </ion-card>
+	<div class="list">
+		<ion-item>
+		  <ion-label>{{'Select Date' | translate}}</ion-label>
+		  <ion-datetime [(ngModel)]="data.timesheet_date" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY"></ion-datetime>
+		</ion-item>
+    <ion-item>
+		  <ion-label>{{'Start time' | translate}}</ion-label>
+		  <ion-datetime [(ngModel)]="data.starttime" display-format="hh:mm A" picker-format="hh:mm A" minuteValues="0,15,30,45"></ion-datetime>
+		</ion-item>
+		<ion-item>
+		  <ion-label>{{'Finish time' | translate}}</ion-label>
+		  <ion-datetime [(ngModel)]="data.finishtime" display-format="hh:mm A" picker-format="hh:mm A" minuteValues="0,15,30,45"></ion-datetime>
+		</ion-item>
+		<ion-item>
+	  	<ion-label>{{'Hours' | translate}}</ion-label>
+	    <ion-range min="0" max="15" step="0.5" [(ngModel)]="data.hours" color="secondary">
+	    </ion-range>
+	    {{data.hours}}
+	  </ion-item>
+	  <ion-item>
+	    <ion-label>{{'Project' | translate}}</ion-label>
+      <ion-select placeholder="{{'Select One' | translate}}" [(ngModel)]="data.address">
+	      <ion-select-option *ngFor="let item of addressList">{{item.address}}</ion-select-option>
+	    </ion-select>
+	  </ion-item>
+	  <ion-item>
+		  <ion-label>{{'Notes' | translate}}</ion-label>
+		  <ion-textarea rows="4" cols="20" placeholder="{{'Enter notes...' | translate}}" [(ngModel)]="data.notes"></ion-textarea>
+		</ion-item>
+  </div>
+  <!--<div class="width-100" *ngIf="isCordova">
+		<ion-button (click)="openCamera()">
+    	<ion-icon slot="start" name="camera"></ion-icon>
+    	Add Photo
+    </ion-button>
+	</div>
+	<div *ngIf="!isCordova" class="width-100">
+		<div>	
+			<input type="file" name="file" id="file4" class="inputfile" (change)="selectFileToUpload($event)" />
+			<label for="file4">Add Photo</label>
+		</div>
+		<div>
+			<img *ngFor="let item of imageList" [src]="item.data">
+		</div>
+	</div>-->
+  <div class="width-100">
+  	<ion-button (click)="doSave()">
+  		{{'Save' | translate}}
+  	</ion-button>
+  </div>
+</ion-content>

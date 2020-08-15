@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+   <ion-buttons slot="start">
+    <ion-button routerLink="/home">
+      <ion-icon slot="icon-only" name="home"></ion-icon>
+    </ion-button>
+   </ion-buttons>
+    <ion-title>{{'To Do Lists' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+	<div class="width-100">
+		<ion-button color="success" routerLink="/new-to-do-list">{{'New To Do List' | translate}}</ion-button>
+	</div>
+	  <p class="p-text">{{'TodoLists_Text1' | translate}}</p>
+  <ion-segment [(ngModel)]="data.status">
+	  <ion-segment-button value="All">
+	    {{'All' | translate}}
+	  </ion-segment-button>
+	  <ion-segment-button value="Not Started">
+	    {{'Not Started' | translate}}
+	  </ion-segment-button>
+	  <ion-segment-button value="In Progress">
+	    {{'In Progress' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="Completed">
+	    {{'Completed' | translate}}
+      </ion-segment-button>
+  </ion-segment>
+  <!--<ion-item>
+	  <ion-label>Filter By Status</ion-label>
+	  <ion-select placeholder="Select One" [(ngModel)]="data.status">
+      <ion-select-option value="All">All</ion-select-option>
+      <ion-select-option value="Not Started">Not Started</ion-select-option>
+      <ion-select-option value="In Progress">In Progress</ion-select-option>
+      <ion-select-option value="Completed">Completed</ion-select-option>
+    </ion-select>
+	</ion-item>-->
+  <ion-list style="margin-top: 10px;">
+  	<ion-item-sliding *ngFor="let item of todoList | statusFilter:data.status" #slidingItem>
+      <ion-item (click)="goTodoItem(slidingItem, item)">
+        <ion-thumbnail slot="start">
+			       <img style="width: 110px;" *ngIf="item.image" src="https://www.artisanideas.co.nz/itab/database/styled/{{item.image | reverseStr}}">
+        			<img style="width: 110px;" *ngIf="!item.image" src="assets/img/YIoJsnszRE6Y948PO6u7_default-news-image.jpg">
+	  		</ion-thumbnail>
+	  		<ion-label>
+	        <div>
+	          <span style="color: blue">{{'List Name' | translate}} : </span>
+	          {{item.list_name}}
+	        </div>
+	        <div style="white-space: normal;">
+	          <span style="color: blue">{{'Project' | translate}} : </span>
+	          {{item.project_no}}
+	        </div>
+	        <div>
+	          <span style="color: blue">{{'Date' | translate}} : </span>
+	          {{item.date1}}
+	        </div>
+	        <div>
+	          <span style="color: blue">{{'Status' | translate}} : </span>
+	          {{item.status}}
+	        </div>
+	        <div>
+	          <span style="color: blue">{{'Notes' | translate}} : </span>
+	          {{item.notes1}}
+	        </div>
+	      </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+	      <ion-item-option (click)="changeStatus(slidingItem, item, 0)">{{'In Progress' | translate}}</ion-item-option>
+	      <ion-item-option color="danger" (click)="changeStatus(slidingItem, item, 1)">{{'Completed' | translate}}</ion-item-option>
+	    </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

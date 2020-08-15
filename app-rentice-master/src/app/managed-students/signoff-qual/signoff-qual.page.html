@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-button routerLink="/signoff-row">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>(first_name) (last_name)</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="help-card">
+        <ion-card-header>
+          <ion-card-subtitle>{{'Sign Off' | translate}}</ion-card-subtitle>
+          <ion-card-title>{{'Qualifications' | translate}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{'Signoff_Qual_Text1' | translate}}</p>
+        </ion-card-content>
+  </ion-card>
+  <ion-button class="button button-stable button-block" routerLink="/signoff-summary">
+    {{'Save and Continue' | translate}}
+  </ion-button>
+  <ion-card class="help-card">
+  <ion-item>
+      <ion-label>{{'Type' | translate}}</ion-label>
+      <ion-select placeholder="Select One">
+        <ion-select-option></ion-select-option>
+      </ion-select>
+    </ion-item>
+  <ion-item>
+      <ion-label>{{'Status' | translate}}</ion-label>
+      <ion-select placeholder="Select One">
+        <ion-select-option></ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'Signoff_Qual_Text2' | translate}}</ion-label>
+      <ion-checkbox slot="start"></ion-checkbox>
+    </ion-item>
+        <ion-button expand="block" (click)="clearFilter()">{{'Clear' | translate}}</ion-button>
+   </ion-card>
+    <ion-list>
+      <ion-item (click)="openUrl('https://www.artisanideas.co.nz/resources/wbs_example.xlsx')">
+        <ion-label>{{'Unit 1 - Unit Description' | translate}}</ion-label>
+        {{'Completed' | translate}}
+      </ion-item>
+      <ion-item (click)="openUrl('https://www.facebook.com/App-rentice-1926106001042340/')">
+        <ion-label>{{'Unit 2 - Unit Description' | translate}}</ion-label>
+        {{'In Progress' | translate}}
+      </ion-item>
+      <ion-item (click)="openUrl('https://www.facebook.com/Ara-Institute-of-Canterbury-ITab-Managed-Carpentry-Apprenticeships-1592295167653663/')">
+        <ion-label>{{'Unit 3 - Unit Description' | translate}}</ion-label>
+        {{'Not Accessed' | translate}}
+      </ion-item>
+    </ion-list>
+    <ion-button class="button button-stable button-block" routerLink="/signoff-summary">
+      {{'Save and Continue' | translate}}
+    </ion-button>
+</ion-content>

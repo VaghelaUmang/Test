@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+    <ion-button routerLink="/managed-student">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <ion-title>{{'Web App Access' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+ <ion-card class="help-card">
+      <ion-img src="/assets/apprentice_clear_banner.png"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>{{'Under Construction' | translate}}</ion-card-subtitle>
+        <ion-card-title>{{'Unit Standard Management' | translate}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{'Qual_Comp_Text1' | translate}}</p>
+      </ion-card-content>
+ </ion-card>
+<ion-content>
+  {{'Qual_Comp_Text2' | translate}}
+  <ion-button (click)="openUrl('https://www.artisanideas.co.nz/itab/page4/')">
+    {{'Continue To Web App' | translate}}
+  </ion-button>
+</ion-content>

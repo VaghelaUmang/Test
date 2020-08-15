@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button routerLink="/tool-register">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <ion-title>{{'Edit Tool' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="list">
+      <ion-item>
+			  <ion-label>{{'Type' | translate}}</ion-label>
+			  <ion-input type="text" placeholder="eg. Drill" [(ngModel)]="data.type"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Brand' | translate}}</ion-label>
+			  <ion-input type="text" placeholder="eg. DeWalt" [(ngModel)]="data.brand"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Model' | translate}}</ion-label>
+			  <ion-input type="text" placeholder="eg. 5068b" [(ngModel)]="data.model"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Serial' | translate}} #</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.serial"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Tool ID' | translate}}</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.tool_id"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Date Purchased' | translate}}</ion-label>
+			  <ion-datetime [(ngModel)]="data.purchased" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY"></ion-datetime>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Purchase Value' | translate}}</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.value"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Notes' | translate}}</ion-label>
+			  <ion-textarea rows="4" cols="20" placeholder="e.g. condition" [(ngModel)]="data.notes"></ion-textarea>
+			</ion-item>
+      <div class="spacer" style="width: 300px; height: 9px;"></div>
+      <ion-item>
+			  <ion-label>{{'Staff' | translate}}</ion-label>
+			  <ion-input type="text" placeholder="allocated to someone?" [(ngModel)]="data.staff"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Team' | translate}}</ion-label>
+			  <ion-input type="text" placeholder="allocated to team?" [(ngModel)]="data.team"></ion-input>
+			</ion-item>
+    </div>
+    <div>
+      <div *ngIf="!toolImg && data.image" (click)="openCamera()">
+        <img src="https://www.artisanideas.co.nz/itab/database/styled/{{data.image | reverseStr}}">
+      </div>
+      <div *ngIf="toolImg" (click)="openCamera()">
+        <img src="{{toolImg}}">
+      </div>
+    </div>
+    <div class="width-100">
+	    <ion-button (click)="openCamera()" *ngIf="bShowButton">
+	    	<ion-icon slot="start" name="camera"></ion-icon>
+	    	{{'Add Photo' | translate}}
+	    </ion-button>
+    </div>
+    <div class="width-100">
+    	<ion-button (click)="doRemove()" color="danger">
+    		<ion-icon slot="start" name="trash"></ion-icon>
+				{{'Delete' | translate}}
+			</ion-button>
+		</div>
+    <div class="width-100">
+    	<ion-button (click)="doUpdate()">
+    		{{'Update' | translate}}
+    	</ion-button>
+    </div>
+</ion-content>

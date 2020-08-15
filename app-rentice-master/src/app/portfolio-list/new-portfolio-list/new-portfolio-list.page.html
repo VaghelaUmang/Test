@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+		<ion-buttons slot="start">
+		  <ion-button routerLink="/portfolio-list">
+		    <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+		  </ion-button>
+		</ion-buttons>
+    <ion-title>{{'New Portfolio' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+		<div class="list">
+      <ion-item>
+			  <ion-label>{{'Name' | translate}}</ion-label>
+			  <ion-input type="text" placeholder="{{'Enter Name' | translate}}" [(ngModel)]="data.name"></ion-input>
+			</ion-item>
+		  <ion-item>
+			  <ion-label>{{'Date Created' | translate}}</ion-label>
+			  <ion-datetime [(ngModel)]="data.date1" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY"></ion-datetime>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Notes' | translate}}</ion-label>
+			  <ion-textarea rows="4" cols="20" placeholder="Enter notes..." [(ngModel)]="data.notes1"></ion-textarea>
+			</ion-item>
+    </div>
+	  <div class="width-100" *ngIf="isCordova">
+			<ion-button (click)="openCamera()">
+	    	<ion-icon slot="start" name="camera"></ion-icon>
+	    	{{'Add Photo' | translate}}
+	    </ion-button>
+		</div>
+		<div *ngIf="!isCordova" class="width-100">
+			<div>	
+				<input type="file" name="file" id="file4" class="inputfile" (change)="selectFileToUpload($event)" />
+				<label for="file4">{{'Add Photo' | translate}}</label>
+			</div>
+			<div>
+				<img *ngFor="let item of imageList" [src]="item.data">
+			</div>
+		</div>
+	  <div *ngIf="inventoryImg">
+	    <img src="{{inventoryImg}}">
+	  </div>
+	  <div class="width-100">
+	  	<ion-button (click)="doSave()">
+	  		{{'Save' | translate}}
+	  	</ion-button>
+	  </div>
+</ion-content>

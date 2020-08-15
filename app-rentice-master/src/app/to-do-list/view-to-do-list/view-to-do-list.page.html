@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+	 	<ion-buttons slot="start">
+	    <ion-button routerLink="/to-do-list">
+	      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+	    </ion-button>
+	  </ion-buttons>
+    <ion-title>{{'View To Do List' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<div class="width-100">
+		<ion-button routerLink="/edit-to-do-list">{{'Edit List' | translate}}</ion-button>
+	</div>
+	<div class="width-100">
+		<ion-button color="success"routerLink="/new-to-do-list-item">{{'New Item' | translate}}</ion-button>
+	</div>
+  <p class="p-text">{{'View_Todolist_Text1' | translate}}</p>
+  <ion-segment [(ngModel)]="data.status">
+	  <ion-segment-button value="All">
+	    {{'All' | translate}}
+	  </ion-segment-button>
+	  <ion-segment-button value="Not Started">
+	    {{'Not Started' | translate}}
+	  </ion-segment-button>
+	  <ion-segment-button value="In Progress">
+	    {{'In Progress' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="Completed">
+	    {{'Completed' | translate}}
+      </ion-segment-button>
+  </ion-segment>
+	<div style="margin-top: 10px;">
+		<ion-list>
+			<ion-item-sliding *ngFor="let item of listitemList | statusFilter:data.status" #slidingItem>
+	      <ion-item (click)="goListItemDetail(slidingItem, item)">
+	      	<ion-thumbnail slot="start">
+				      <img style="width: 110px;" *ngIf="item.image" src="https://www.artisanideas.co.nz/itab/database/styled/{{item.image | reverseStr}}">
+		      		<img style="width: 110px;" *ngIf="!item.image" src="assets/img/YIoJsnszRE6Y948PO6u7_default-news-image.jpg">
+		  		</ion-thumbnail>
+		  		<ion-label>
+		        <div style="white-space: normal">
+		          <span style="color: blue">{{'Item Name' | translate}} : </span>
+		          {{item.item_name}}
+		        </div>
+		        <div style="white-space: normal">
+		          <span style="color: blue">{{'Status' | translate}} : </span>
+		          {{item.status}}
+		        </div>
+		      </ion-label>
+	      </ion-item>
+	      <ion-item-options side="end">
+		      <ion-item-option (click)="changeStatus(slidingItem, item, 0)">{{'In Progress' | translate}}</ion-item-option>
+		      <ion-item-option color="danger" (click)="changeStatus(slidingItem, item, 1)">{{'Completed' | translate}}</ion-item-option>
+		    </ion-item-options>
+	    </ion-item-sliding>
+    </ion-list>
+	</div>
+</ion-content>

@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+	  <!--<ion-buttons slot="start">
+	    <ion-button routerLink="/sub">
+	      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+	    </ion-button>
+	  </ion-buttons>-->
+	  <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'Enter Activity' | translate }}</ion-title>
+    <ion-buttons slot="end" *ngIf="bShowResourceBtn">
+	    <ion-button (click)="openResources()">
+	      {{ 'Resources' | translate }}
+	    </ion-button>
+	  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main-list">
+      <ion-item id="enterActivity-input7">
+			  <ion-label>{{ 'Main Category' | translate }}:</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.main_category_name" readonly></ion-input>
+			</ion-item>
+			<ion-item id="enterActivity-input8">
+			  <ion-label>{{ 'Sub Category' | translate }}:</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.sub_category_name" readonly></ion-input>
+			</ion-item>
+			<ion-item>
+		    <ion-label>{{ 'Select Activity' | translate }}</ion-label>
+        <ion-select class="main-activity" [selectedText]="data.inventory_itemList" id="activities" multiple="true" placeholder="Select up to 3" [(ngModel)]="data.inventory_itemList" (ionChange)="changeActivity()" (ionBlur)="changeActivity()">
+		      <ion-select-option *ngFor="let item of activities">{{item.name}}</ion-select-option>
+		    </ion-select>
+		  </ion-item>
+		  <ion-item>
+		    <ion-label>{{ 'Project' | translate }}</ion-label>
+        <ion-select placeholder="{{'Select One' | translate}}" [selectedText]="data.address" [(ngModel)]="data.address">
+		      <ion-select-option *ngFor="let item of addressList">{{item.address}}</ion-select-option>
+		    </ion-select>
+		  </ion-item>
+		  <ion-item>
+		  	<ion-label>{{ 'Hours' | translate }}</ion-label>
+		    <ion-range min="0" max="15" step="0.5" [(ngModel)]="data.inventory_value" color="secondary">
+		    </ion-range>
+		    <span>{{data.inventory_value}}</span>
+		  </ion-item>
+		  <ion-item>
+			  <ion-label>{{ 'Select Date' | translate }}</ion-label>
+			  <ion-datetime [(ngModel)]="data.inventory_purchased" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY"></ion-datetime>
+			</ion-item>
+			<ion-item>
+			  <ion-label position="fixed">{{ 'Notes' | translate }}:</ion-label>
+			  <ion-textarea rows="4" cols="20" [(ngModel)]="data.notes"></ion-textarea>
+			</ion-item>
+			<ion-item>
+		    <ion-label>{{ 'Add to Time Sheet' | translate }}</ion-label>
+		    <ion-checkbox slot="start" [(ngModel)]="data.savetimesheet" (ionChange)="changeTimesheet()"></ion-checkbox>
+		  </ion-item>
+		  <ion-item *ngIf="data.savetimesheet">
+			  <ion-label>{{ 'Start time' | translate }}</ion-label>
+			  <ion-datetime [(ngModel)]="data.starttime" display-format="hh:mm A" picker-format="hh:mm A" minuteValues="0,15,30,45"></ion-datetime>
+			</ion-item>
+			<ion-item *ngIf="data.savetimesheet">
+			  <ion-label>{{ 'Finish time' | translate }}</ion-label>
+			  <ion-datetime [(ngModel)]="data.finishtime" display-format="hh:mm A" picker-format="hh:mm A" minuteValues="0,15,30,45"></ion-datetime>
+			</ion-item>
+    	<div *ngIf="isCordova">
+				<div class="width-100">
+					<ion-button class="width-100" (click)="openCamera()">{{ 'Add Photo (up to 3)' | translate }}</ion-button>
+				</div>
+				<div>
+					<img *ngFor="let item of imageList" [src]="item.data">
+				</div>
+			</div>
+			<div *ngIf="!isCordova" class="width-100">
+				<div>	
+					<input type="file" name="file1" id="file1" style="display: none;" (change)="selectFileToUpload($event)" />
+					<label class="add-photo" for="file1">{{ 'Add Photo (up to 3)' | translate }}</label>
+				</div>
+				<div>
+					<img *ngFor="let item of imageList" [src]="item.data">
+				</div>
+			</div>
+			<div>
+				<ion-button class="width-100" (click)="doSave()">{{ 'Save' | translate }}</ion-button>
+			</div>
+  </div>
+</ion-content>

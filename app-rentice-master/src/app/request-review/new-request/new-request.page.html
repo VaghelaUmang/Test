@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+   	<ion-buttons slot="start">
+      <ion-button routerLink="/request-review">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="help-card">
+      <ion-img src="/assets/request_review.jpg"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>{{'Be prepared and create a' | translate}}</ion-card-subtitle>
+        <ion-card-title>{{'New Review Request' | translate}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{'NewRequest_TEXT1' | translate}}</p>
+      </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-item lines="none">
+  	  <ion-label><b>{{'Trainee Name' | translate}}:</b></ion-label>
+  	  Trainee {{user.user_firstname}} {{user.user_lastname}}
+    </ion-item>
+    <ion-item lines="none">
+		  <ion-label><b>{{'Qualification' | translate}}:</b></ion-label>
+		  {{qualName}}
+    </ion-item>
+    <ion-item lines="none">
+  			  <ion-label><b>{{'Assessor' | translate}}:</b></ion-label>
+  			  Trainer {{user.tutorName}}
+    </ion-item>
+  </ion-card>
+  <ion-item>
+    <ion-label><b>{{'Date' | translate}}:</b></ion-label>
+	  <ion-datetime [(ngModel)]="data.date" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY"></ion-datetime>
+  </ion-item>
+  <ion-item>
+	  <ion-label position="fixed">{{'Note' | translate}}:</ion-label>
+	  <ion-textarea [(ngModel)]="data.notes" rows="8" cols="20"></ion-textarea>
+  </ion-item>
+  <ion-button expand="block" (click)="saveData()">{{'Create New' | translate}}</ion-button>
+</ion-content>

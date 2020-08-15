@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-card class="help-card">
+      <ion-img src="/assets/news_banner.png"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>{{ 'Links to' | translate }}</ion-card-subtitle>
+        <ion-card-title>{{ 'News Websites and Resources' | translate }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ 'Select from the list below to open' | translate }}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-list lines="none">
+      <ion-list-header>
+        <ion-label>{{ 'Resources' | translate }}</ion-label>
+      </ion-list-header>
+      <ion-item (click)="openUrl('https://www.artisanideas.co.nz/resources/wbs_example.xlsx')">
+        <ion-thumbnail  slot="start">
+         <img src="/assets/back_costing.png">
+        </ion-thumbnail>
+        <ion-label>{{ 'Back Costing Template Example' | translate }}</ion-label>
+      </ion-item>
+      <ion-item (click)="openUrl('https://www.facebook.com/App-rentice-1926106001042340/')">
+        <ion-thumbnail  slot="start">
+         <img src="/assets/facebook.png">
+        </ion-thumbnail>
+        <ion-label>{{ 'App-Rentice Facebook Page' | translate }}</ion-label>
+      </ion-item>
+      <ion-item (click)="openUrl('https://www.facebook.com/Ara-Institute-of-Canterbury-ITab-Managed-Carpentry-Apprenticeships-1592295167653663/')">
+        <ion-thumbnail  slot="start">
+         <img src="/assets/ara.png">
+        </ion-thumbnail>
+        <ion-label>{{ 'ARA Apprenticeships Facebook Page' | translate }}</ion-label>
+      </ion-item>
+      <ion-item (click)="openUrl('https://www.facebook.com/Ara-Institute-of-Canterbury-ITab-Managed-Carpentry-Apprenticeships-1592295167653663/')">
+        <ion-thumbnail  slot="start">
+         <img src="/assets/itab.png">
+        </ion-thumbnail>
+        <ion-label>{{ 'ITAB Apprenticeships Facebook Page' | translate }}</ion-label>
+      </ion-item>
+      <ion-item (click)="openUrl('http://www.buildersbase.co.nz/news/')">
+        <ion-thumbnail  slot="start">
+         <img src="/assets/buildersbase.png">
+        </ion-thumbnail>
+        <ion-label>{{ 'Buildersbase News' | translate }}</ion-label>
+        </ion-item>
+      <ion-item (click)="openUrl('http://www.buildersbase.co.nz/events/')">
+        <ion-thumbnail  slot="start">
+         <img src="/assets/buildersbase.png">
+        </ion-thumbnail>
+        <ion-label>{{ 'Buildersbase Events' | translate }}</ion-label>
+      </ion-item>
+      <ion-item (click)="openUrl('http://www.buildersbase.co.nz/industry-announcements/')">
+        <ion-thumbnail  slot="start">
+         <img src="/assets/buildersbase.png">
+        </ion-thumbnail>
+      <ion-label>{{ 'Buildersbase Industry Announcements' | translate }}</ion-label>
+      </ion-item>
+    </ion-list>
+</ion-content>

@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-toolbar>
+   	<ion-buttons slot="start">
+      <ion-button routerLink="/request-review">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+        {{'Return without sending' | translate}}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<ion-card class="help-card">
+      <ion-img src="/assets/request_review.jpg"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>{{'Check your work and' | translate}}</ion-card-subtitle>
+        <ion-card-title>{{'Edit Review Request' | translate}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{'EditRequest_TEXT1' | translate}}</p>
+        <p>{{'EditRequest_TEXT2' | translate}}</p>
+        <p>{{'EditRequest_TEXT3' | translate}}</p>
+        <p>{{'EditRequest_TEXT4' | translate}}</p>
+      </ion-card-content>
+  </ion-card>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" routerLink="/student-log">{{'Go to your Record of Work' | translate}}</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" routerLink="/search-by-us">{{'Go to your Qualification' | translate}}</ion-button>
+      </ion-col>
+    </ion-row>
+<ion-card>
+  <ion-item lines="none">
+			  <ion-label><b>{{'Trainee Name' | translate}}:</b></ion-label>
+			  Trainee First Name - Last Name
+  </ion-item>
+  <ion-item lines="none">
+			  <ion-label><b>{{'Qualification' | translate}}:</b></ion-label>
+			  NZ Cert Carpentry
+  </ion-item>
+  <ion-item lines="none">
+			  <ion-label><b>{{'Assessor' | translate}}:</b></ion-label>
+			  Trainer First Name - Last Name
+  </ion-item>
+</ion-card>
+<ion-card>
+  <ion-item>
+  <ion-label><b>{{'Date' | translate}}:</b></ion-label>
+			  <ion-datetime display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY"></ion-datetime>
+  </ion-item>
+  <ion-item>
+			  <ion-label position="fixed">{{'Note' | translate}}:</ion-label>
+			  <ion-textarea rows="8" cols="20"></ion-textarea>
+  </ion-item>
+</ion-card>
+<ion-card>
+	<ion-card-title>{{'Record of Work Entries' | translate}}</ion-card-title>    
+ <ion-list>
+   <ion-item-sliding>
+      <ion-item>
+        <ion-thumbnail  slot="start">
+         <img src="/assets/placeholder.png">
+        </ion-thumbnail>
+        <ion-label>Entry One</ion-label>
+      </ion-item>
+              <ion-item-options side="end">
+	      <ion-item-option color="danger">UnSelect</ion-item-option>
+	    </ion-item-options>
+	</ion-item-sliding>
+	<ion-item-sliding>
+      <ion-item>
+        <ion-thumbnail  slot="start">
+         <img src="/assets/placeholder.png">
+        </ion-thumbnail>
+        <ion-label>Entry Two</ion-label>
+       </ion-item>
+        <ion-item-options side="end">
+	      <ion-item-option color="danger">UnSelect</ion-item-option>
+	    </ion-item-options>
+	</ion-item-sliding>
+	<ion-item-sliding>
+      <ion-item>
+        <ion-thumbnail  slot="start">
+         <img src="/assets/placeholder.png">
+        </ion-thumbnail>
+        <ion-label>Entry Three</ion-label>
+      </ion-item>
+        <ion-item-options side="end">
+	      <ion-item-option color="danger">UnSelect</ion-item-option>
+	    </ion-item-options>
+	</ion-item-sliding>
+  </ion-list>
+</ion-card>
+<ion-card>
+	<ion-card-title>{{'Qualification Areas' | translate}}</ion-card-title>
+	<ion-list>
+      <ion-item>
+        <ion-label>Qual One</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Qual Two</ion-label>
+       </ion-item>
+	<ion-item-sliding>
+      <ion-item>
+        <ion-label>Sub Qual 2.1</ion-label>
+      </ion-item>
+        <ion-item-options side="end">
+	      <ion-item-option color="danger">{{'Return to In-Progress' | translate}}</ion-item-option>
+	    </ion-item-options>
+	</ion-item-sliding>
+  </ion-list>
+</ion-card>
+      <ion-row>
+      <ion-col>
+        <ion-button expand="block" routerLink="/student-log">{{'Email' | translate}}</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" routerLink="/search-by-us">{{'Notify your Assessor' | translate}}</ion-button>
+      </ion-col>
+    </ion-row>
+</ion-content>

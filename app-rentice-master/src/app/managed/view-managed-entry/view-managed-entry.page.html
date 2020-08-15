@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-button routerLink="/managed-staff-timesheets">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Staff Timesheet Entry</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="list">
+    	<ion-item lines="none">
+			  <ion-label><b>Date:</b></ion-label>
+			  {{data.timesheet_date | date:'MM/dd/yyyy'}}
+		</ion-item>
+	    <ion-item lines="none">
+			  <ion-label><b>Start time:</b></ion-label>
+			  {{data.starttime}}
+		</ion-item>
+		<ion-item lines="none">
+			  <ion-label><b>Finish time:</b></ion-label>
+			  {{data.finishtime}}
+		</ion-item>
+		<ion-item lines="none">
+		  	<ion-label><b>Hours:</b></ion-label>
+		    {{data.hours}}
+		 </ion-item>
+		 <ion-item lines="none">
+		    <ion-label><b>Project:</b></ion-label>
+		    {{data.address}}
+		 </ion-item>
+		 <ion-item lines="none">
+			  <ion-label><b>Notes:</b></ion-label>
+			  {{data.notes}}
+			</ion-item>
+    </div>
+    <div>
+      <div *ngIf="!timesheetImg && data.timesheet_image" (click)="openCamera()">
+        <img src="https://www.artisanideas.co.nz/itab/database/styled/{{data.timesheet_image | reverseStr}}">
+      </div>
+      <div *ngIf="timesheetImg" (click)="openCamera()">
+        <img src="{{timesheetImg}}">
+      </div>
+    </div>
+</ion-content>

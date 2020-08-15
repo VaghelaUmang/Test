@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+  	   <ion-buttons slot="start">
+    <ion-button routerLink="/view-ts-entry">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <ion-title>{{'Edit Timesheet Entry' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="list">
+    	<ion-item>
+			  <ion-label>{{'Select Date' | translate}}</ion-label>
+			  <ion-datetime [(ngModel)]="data.timesheet_date" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY"></ion-datetime>
+			</ion-item>
+	    <ion-item>
+			  <ion-label>{{'Start time' | translate}}</ion-label>
+			  <ion-datetime [(ngModel)]="data.starttime" display-format="hh:mm A" picker-format="hh:mm A" minuteValues="0,15,30,45"></ion-datetime>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Finish time' | translate}}</ion-label>
+			  <ion-datetime [(ngModel)]="data.finishtime" display-format="hh:mm A" picker-format="hh:mm A" minuteValues="0,15,30,45"></ion-datetime>
+			</ion-item>
+			<ion-item>
+		  	<ion-label>{{'Hours' | translate}}</ion-label>
+		    <ion-range min="0" max="15" step="0.5" [(ngModel)]="data.hours" color="secondary">
+		    </ion-range>
+		    {{data.hours}}
+		  </ion-item>
+		  <ion-item>
+		    <ion-label>{{'Project' | translate}}</ion-label>
+	      <ion-select placeholder="{{'Select One' | translate}}" [value]="data.address" [(ngModel)]="data.address">
+		      <ion-select-option *ngFor="let item of addressList" [value]="item.list_id">{{item.address}}</ion-select-option>
+		    </ion-select>
+		  </ion-item>
+		  <ion-item>
+			  <ion-label>{{'Notes' | translate}}</ion-label>
+			  <ion-textarea rows="4" cols="20" placeholder="Enter notes..." [(ngModel)]="data.notes"></ion-textarea>
+			</ion-item>
+    </div>
+    <div *ngIf="!showButton">
+    	<img *ngFor="let item of imageList" src="https://www.artisanideas.co.nz/itab/database/styled/{{item.data | reverseStr}}">
+    </div>
+    <!--<ion-item>
+	    <ion-label>Add to Time Sheet</ion-label>
+	    <ion-checkbox slot="start" [(ngModel)]="data.savetimesheet"></ion-checkbox>
+	  </ion-item>-->
+    <!--<div class="width-100" *ngIf="isCordova">
+			<ion-button (click)="openCamera()" *ngIf="showButton">
+        <ion-icon slot="start" name="camera"></ion-icon>
+        Add Photo
+      </ion-button>
+		</div>
+		<div *ngIf="!isCordova && showButton" class="width-100">
+			<div>	
+				<input type="file" name="file" id="file3" class="inputfile" (change)="selectFileToUpload($event)" />
+				<label for="file3">Add Photo</label>
+			</div>
+			<div>
+				<img *ngFor="let item of imageNewList" [src]="item.data">
+			</div>
+		</div>-->
+    <!--<div>
+      <div *ngIf="!timesheetImg && data.timesheet_image" (click)="openCamera()">
+        <img src="https://www.artisanideas.co.nz/itab/database/styled/{{data.timesheet_image | reverseStr}}">
+      </div>
+      <div *ngIf="timesheetImg" (click)="openCamera()">
+        <img src="{{timesheetImg}}">
+      </div>
+    </div>-->
+
+		<div class="width-100">
+    	<ion-button (click)="doSave()" class="ion-button-block">{{'Update Entry' | translate}}</ion-button>
+    </div>
+</ion-content>

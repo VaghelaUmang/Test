@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+   	<ion-buttons slot="start">
+      <ion-button routerLink="/signoff">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{user.user_firstname}} {{user.user_lastname}} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="help-card">
+      <ion-img src="/assets/signoff_banner.png"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>Create New Sign Off</ion-card-subtitle>
+        <ion-card-title>Once a Sign Off has been saved, a PDF will be created and it cannot be edited</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Selecting Create New will include the following information, if any information is wrong, please contact your Admin or HOD</p>
+        <p>The Date for creating the Record <u>must be the same date</u> as the Entries marked as added and Units/Elements statuses updated.</p>
+      </ion-card-content>
+  </ion-card>
+  <ion-item>
+        <ion-label><b>Meeting Date:</b></ion-label>
+			  <ion-datetime [(ngModel)]="data.date" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY"></ion-datetime>
+  </ion-item>
+  <ion-item>
+      <ion-label position="stacked" style="font-size: 14px;">Booking Note:</ion-label>
+      <ion-textarea rows="7" cols="20" [(ngModel)]="data.booking_note"></ion-textarea>
+  </ion-item>
+  <ion-item>
+      <ion-label position="stacked" style="font-size: 14px;">Sign Off Note:</ion-label>
+      <ion-textarea rows="7" cols="20" [(ngModel)]="data.notes"></ion-textarea>
+  </ion-item>
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block" (click)="photoInput1.click()">
+        Add Photo
+      </ion-button>
+      <input type="file" name="file9" id="file9" class="inputfile" (change)="selectFileToUpload($event, 1)" #photoInput1/>
+      <ion-img  *ngIf="image1.length>0 && !photo1" src="https://www.artisanideas.co.nz/itab/database/styled/{{image1 | reverseStr}}"></ion-img>
+      <ion-img *ngIf="!photo1 && image1.length<1" src="/assets/placeholder.png"></ion-img>
+      <img *ngIf="photo1" [src]="photo1.data" />
+    </ion-col>
+    <ion-col>
+      <ion-button expand="block" (click)="photoInput2.click()">
+        Add Photo
+      </ion-button>
+      <input type="file" name="file10" id="file10" class="inputfile" (change)="selectFileToUpload($event, 2)" #photoInput2/>
+      <ion-img  *ngIf="image2.length>0 && !photo2" src="https://www.artisanideas.co.nz/itab/database/styled/{{image2 | reverseStr}}"></ion-img>
+      <ion-img *ngIf="!photo2 && image2.length<1" src="/assets/placeholder.png"></ion-img>
+      <img *ngIf="photo2" [src]="photo2.data" />
+    </ion-col>
+  </ion-row>
+  <ion-button class="button button-stable button-block" (click)="saveNotePhoto()">
+    Save
+  </ion-button>
+
+</ion-content>

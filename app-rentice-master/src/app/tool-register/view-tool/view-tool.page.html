@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button routerLink="/tool-register">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <ion-title>{{'View Tool' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="list">
+      <ion-item>
+			  <ion-label>{{'Type' | translate}}</ion-label>
+			  <ion-input type="text"  [(ngModel)]="data.type" readonly class="text-right"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Brand' | translate}}</ion-label>
+			  <ion-input type="text"  [(ngModel)]="data.brand" readonly class="text-right"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Model' | translate}}</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.model" readonly class="text-right"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Serial' | translate}} #</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.serial" readonly class="text-right"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Tool ID' | translate}}</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.tool_id" readonly class="text-right"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Date Purchased' | translate}}</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.purchased" readonly class="text-right"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Purchase Value' | translate}}</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.value" readonly class="text-right"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Notes' | translate}}</ion-label>
+			  <ion-textarea rows="4" cols="20" [(ngModel)]="data.notes" readonly></ion-textarea>
+			</ion-item>
+      <div class="spacer" style="width: 300px; height: 9px;"></div>
+      <ion-item>
+			  <ion-label>{{'Staff' | translate}}</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.staff" readonly class="text-right"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Team' | translate}}</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.team" readonly class="text-right"></ion-input>
+			</ion-item>
+    </div>
+    <div>
+      <div *ngIf="!toolImg && data.image" (click)="openCamera()">
+        <img src="https://www.artisanideas.co.nz/itab/database/styled/{{data.image | reverseStr}}">
+      </div>
+      <div *ngIf="toolImg" (click)="openCamera()">
+        <img src="{{toolImg}}">
+      </div>
+    </div>
+    <div class="width-100">
+    	<ion-button (click)="doRemove()" color="danger">
+    		<ion-icon slot="start" name="trash"></ion-icon>
+				{{'Delete' | translate}}
+			</ion-button>
+		</div>
+    <div class="width-100">
+    	<ion-button (click)="goUpdate()">
+    		{{'Update Entry' | translate}}
+    	</ion-button>
+    </div>
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+   <ion-buttons slot="start">
+    <ion-button routerLink="/projects">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <ion-title>{{'View Project' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="list">
+      <ion-item>
+			  <ion-label>{{'Address/Project Name' | translate}}</ion-label>
+			  <div>{{data.address}}</div>
+			</ion-item>
+      <ion-item>
+			  <ion-label position="fixed">{{'Notes' | translate}}</ion-label>
+        <div>{{data.notes}}</div>
+			</ion-item>
+      <ion-item>
+			  <ion-label>{{'Start Date' | translate}}</ion-label>
+			  <div>{{data.date}}</div>
+			</ion-item>
+			<ion-item *ngIf="data.project_image">
+		    <div>
+          <img src="https://www.artisanideas.co.nz/itab/database/styled/{{data.project_image | reverseStr}}">
+        </div>
+		  </ion-item>
+    </div>
+</ion-content>

@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+	    <ion-buttons slot="start">
+		    <ion-button routerLink="/student-log">
+		      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+		    </ion-button>
+		  </ion-buttons>
+    <ion-title>{{'View Entry' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<div class="list">
+		<ion-item lines="none">
+		  <ion-label><b>{{'Main Category' | translate}}:</b></ion-label>
+	    <div slot="end" class="text-right">
+		    {{data.main_category}}
+		  </div>
+		</ion-item>
+		<ion-item lines="none">
+		  <ion-label><b>{{'Sub Category' | translate}}:</b></ion-label>
+		  <div slot="end" class="text-right">
+			  {{data.sub_category}}
+			</div>
+		</ion-item>
+		<ion-item lines="none">
+	    <ion-label><b>{{'Activity' | translate}}:</b></ion-label>
+	    <ion-label text-wrap class="text-right">
+	    	{{data.inventory_itemList}}
+	    </ion-label>
+	  </ion-item>
+	  <ion-item lines="none">
+	    <ion-label position="fixed"><b>{{'Project' | translate}}:</b></ion-label>
+      <div slot="end">
+      	{{data.address}}
+      </div>
+	  </ion-item>
+		<ion-item lines="none">
+		  <ion-label position="fixed"><b>{{'Hours' | translate}}:</b></ion-label>
+		  <div slot="end" slot="end">
+			  {{data.inventory_value}}
+			</div>
+		</ion-item>
+		<ion-item lines="none">
+		  <ion-label position="fixed"><b>{{'Notes' | translate}}:</b></ion-label>
+		  <div slot="end">
+		  	{{data.notes}}
+		  </div>
+		</ion-item>
+		<ion-item lines="none">
+		  <ion-label><b>{{'Date' | translate}}:</b></ion-label>
+		  <div slot="end">
+		  	{{data.date}}
+		  </div>
+		</ion-item>
+		<ion-item lines="none">
+		  <ion-label><b>{{'Employer Notes' | translate}}:</b></ion-label>
+		  <div slot="end">
+		  	{{data.boss_notes}}
+		  </div>
+		</ion-item>
+		<ion-item lines="none">
+		  <ion-label><b>{{'Tutor Notes' | translate}}:</b></ion-label>
+		  <div slot="end">
+		  	{{data.tutor_notes}}
+		  </div>
+		</ion-item>
+		<ion-button fill="outline" size="small" (click)="copyTextClipboard()">Copy Text To Clipboard</ion-button>
+		<div>
+      <div *ngIf="!studentImg && data.image" (click)="openCamera()">
+        <img src="https://www.artisanideas.co.nz/itab/database/styled/{{data.inventory_image | reverseStr}}">
+      </div>
+      <div *ngIf="studentImg" (click)="openCamera()">
+        <img src="{{studentImg}}">
+      </div>
+    </div>
+    <div *ngIf="!showButton">
+    	<div *ngFor="let item of imageList;let i=index">
+	    	<img id="img{{i}}" src="https://www.artisanideas.co.nz/itab/database/styled/{{item.data | reverseStr}}">
+	    	<!-- <a download="https://www.artisanideas.co.nz/itab/database/styled/{{item.data | reverseStr}}" target="_blank">Download Image</a> -->
+	    	<ion-button *ngIf="global.browser=='chrome'" (click)="downloadImage(item.data)">Download Image</ion-button>
+	    </div>
+    </div>
+    <div class="width-100">
+    	<ion-button (click)="exportPDF()" class="ion-button-block">{{'Export as PDF' | translate}}</ion-button>
+    </div>
+	  <div class="width-100">
+    	<ion-button (click)="doRemove()" color="danger">
+    		<ion-icon slot="start" name="trash"></ion-icon>
+				{{'Delete' | translate}}
+			</ion-button>
+		</div>
+		<div class="width-100">
+    	<ion-button (click)="doUpdate()" class="ion-button-block">{{'Edit Entry' | translate}}</ion-button>
+    </div>
+    <!--<iframe type="application/pdf" src="{{pdfData}}"></iframe>-->
+  </div>
+</ion-content>

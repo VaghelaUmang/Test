@@ -1,0 +1,76 @@
+.manual-remove-top-padding {
+    padding-top: 0px !important;
+}
+
+ion-content {
+    --background: url('../../assets/img/login-bg.jpg') no-repeat center center / cover;
+    background-size: cover !important;
+    --background-size: cover !important;
+		-webkit-background-size: cover !important;
+		-moz-background-size: cover !important;
+		-o-background-size: cover !important;
+}
+
+#login-heading1 {
+	font-size: 36px;
+	color:#FFFFFF;
+	font-weight:600;
+	text-align:center;
+}
+
+#login-form1 {
+  position: relative;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  margin-bottom: 20px;
+  .input-label {
+	    display: table;
+	    padding: 7px 10px 7px 0px;
+	    max-width: 200px;
+	    width: 35%;
+	    color: #151414;
+	    font-size: 16px;
+	}
+	input {
+		padding-right: 44px;
+	}
+}
+
+#login-button2 {
+	font-weight:600;
+}
+
+.button-bar {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    width: 100%;
+    .button {
+	    -webkit-box-flex: 1;
+	    -webkit-flex: 1;
+	    -moz-box-flex: 1;
+	    -moz-flex: 1;
+	    -ms-flex: 1;
+	    flex: 1;
+	    display: block;
+	    overflow: hidden;
+	    padding: 0px 0px 1px 5px;
+	    width: 0;
+	    border-width: 1px 0px 1px 1px;
+	    border-radius: 0;
+	    text-align: center;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+      min-height: 35px;
+		}
+}
+

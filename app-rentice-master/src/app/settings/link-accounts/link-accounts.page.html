@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+  	 <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+     </ion-buttons>
+    <ion-title>Link Accounts</ion-title>
+  </ion-toolbar>
+</ion-header>
+    <ion-card class="help-card">
+      <ion-img src="/assets/link_banner.png"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>Share and View</ion-card-subtitle>
+        <ion-card-title>Content with Others</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Only ONE account can access your entries but you can view multiple accounts</p>
+        <p>See the <u routerLink="/help">Help Page</u> for more info</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-grid>
+  <ion-row>
+    <ion-col>
+  <div class="width-100">
+      <ion-button routerLink="/link-worker">
+        Link Worker
+      </ion-button>
+  </div>
+    </ion-col>
+    <ion-col>
+  <div class="width-100">
+      <ion-button routerLink="/link-employer">
+        Link Employer
+      </ion-button>
+  </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<ion-content padding>
+	<ion-list>
+    <ion-item *ngFor="let item of userList" item="item">
+  		<ion-label>
+	      <div>
+	        <span style="color: blue">Name : </span>
+	        {{item.user_firstname}} {{item.user_lastname}}
+	      </div>
+	      <div style="white-space: normal">
+	        <span style="color: blue">Email : </span>
+	        {{item.user_email}}
+	      </div>
+	    </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

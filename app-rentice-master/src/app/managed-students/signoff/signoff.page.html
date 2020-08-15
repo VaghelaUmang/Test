@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-button routerLink="/student-menu">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{user.user_firstname}} {{user.user_lastname}} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="help-card">
+      <ion-img src="/assets/signoff_banner.png"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>For Feedback and Comment</ion-card-subtitle>
+        <ion-card-title>Non-Working Demo</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Let us know your ides or requirements on how this could work</p>
+      </ion-card-content>
+  </ion-card>
+  <ion-button class="button button-stable button-block" (click)="createNew()">
+    Create New Sign Off
+  </ion-button>
+  <ion-list>
+    <ion-item style="cursor: pointer;" *ngFor="let item of requestList;" (click)="goSignoffSummary(item)">
+      <ion-label>{{'Request' | translate}} #{{item.list_id}} - {{item.created | slice:0:10}}</ion-label>
+     {{item.status}}
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,64 @@
+.width-100 {
+	width: 90%;
+	margin: 0 auto;
+	display: block;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	.button {
+		width: 100%;
+	}
+}
+
+.p-text {
+  text-align: center;
+  color: grey;
+}
+
+ion-segment-button {
+	width: 25%;
+}
+
+.hide {
+	color: grey;
+	* {
+		color: grey;
+	}
+}
+
+.hidden {
+	display: none;
+}
+
+.label-txt {
+	color: blue;
+}
+
+.image {
+	width: 110px;
+	height: auto;
+  position: absolute;
+  top: 50px;
+}
+
+.main-item {
+	display: block;
+	border-bottom: solid 1px #a1a1a1;
+  position: relative;
+  cursor: pointer;
+}
+
+.sub-item {
+	margin-bottom: 5px;
+}
+
+.notes {
+	white-space: normal;
+	margin-bottom: 10px;
+	margin-top: 205px;
+}
+
+.activity {
+	font-weight: 500;
+	font-size: 16px;
+	margin-bottom: 10px;
+}

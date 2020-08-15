@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/signoff-row">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>(first_name) (last_name)</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none">
+			  <ion-label><b>Main Category:</b></ion-label>
+			  Main Category 1
+  </ion-item>
+  <ion-item lines="none">
+			  <ion-label><b>Sub Category:</b></ion-label>
+			  Sub Category 1
+  </ion-item>
+  <ion-item lines="none">
+			  <ion-label><b>Activity:</b></ion-label>
+			  Activity Name
+  </ion-item>
+  <ion-item lines="none">
+			  <ion-label><b>Project:</b></ion-label>
+			  Project Name
+  </ion-item>
+  <ion-item lines="none">
+			  <ion-label><b>Hours:</b></ion-label>
+			  9
+  </ion-item>  
+  <ion-item lines="none">
+			  <ion-label><b>Date:</b></ion-label>
+			  12-08-2018
+  </ion-item>
+  <ion-item>
+			  <ion-label><b>Notes:</b></ion-label>
+			  Student Notes Displayed Here
+  </ion-item>
+  <ion-item lines="none">
+			  <ion-label><b>Employer Notes:</b></ion-label>
+			  Employers Notes Displayed Here
+  </ion-item>
+    <ion-item>
+			  <ion-label><b>Employer Checked:</b></ion-label>
+			  18-08-2018
+  </ion-item>
+    <ion-item>
+			  <ion-label><b>Trainer Notes:</b></ion-label>
+			  <ion-textarea rows="4" cols="20"></ion-textarea>
+  </ion-item>
+    <ion-item>
+      <ion-label>Added to Current Sign Off Record</ion-label>
+      <ion-checkbox slot="start"></ion-checkbox>
+    </ion-item>
+<ion-row>
+    <ion-col>
+    <ion-img src="/assets/placeholder.png"></ion-img>
+    </ion-col>
+    <ion-col>
+    <ion-img src="/assets/placeholder.png"></ion-img>
+    </ion-col>
+    <ion-col>
+    <ion-img src="/assets/placeholder.png"></ion-img>
+    </ion-col>
+  </ion-row>
+  <ion-button class="button button-stable button-block" routerLink="/signoff-row">
+    Save and Return
+  </ion-button>
+</ion-content>

@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+  	  <ion-buttons slot="start">
+		    <ion-button routerLink="/portfolio">
+		      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+		    </ion-button>
+		  </ion-buttons>
+   	  <ion-title>{{'Edit'  | translate}} {{global.portfolioFilter}}</ion-title>
+   	  <ion-item slot="end" lines="none">
+		    <ion-label>Hide</ion-label>
+		    <ion-toggle [(ngModel)]="data.hide"></ion-toggle>
+		  </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+    	<ion-item *ngIf="global.portfolioFilter == 'activity'">
+			  <!-- <ion-label>{{'Name' | translate}}</ion-label> -->
+			  <ion-input type="text" placeholder="{{'Enter Name' | translate}}" [(ngModel)]="data.activity"></ion-input>
+			</ion-item>
+			<ion-item *ngIf="global.portfolioFilter == 'main category'">
+			  <!-- <ion-label>{{'Name' | translate}}</ion-label> -->
+			  <ion-input type="text" placeholder="{{'Enter Name' | translate}}" [(ngModel)]="data.mainCat"></ion-input>
+			</ion-item>
+			<ion-item *ngIf="global.portfolioFilter == 'sub category'">
+			  <!-- <ion-label>{{'Name' | translate}}</ion-label> -->
+			  <ion-input type="text" placeholder="{{'Enter Name' | translate}}" [(ngModel)]="data.subCat"></ion-input>
+			</ion-item>
+			<ion-item *ngIf="global.portfolioFilter == 'project'">
+			  <!-- <ion-label>{{'Name' | translate}}</ion-label> -->
+			  <ion-input type="text" placeholder="{{'Enter Name' | translate}}" [(ngModel)]="data.project"></ion-input>
+			</ion-item>
+			<ion-item *ngIf="global.portfolioFilter == 'duration'">
+		  	<!-- <ion-label>{{ 'Hours' | translate }}</ion-label> 
+		    <ion-range min="0" max="15" step="0.5" [(ngModel)]="data.hours" color="secondary">
+		    </ion-range>-->
+		    <ion-input type="text" placeholder="Enter Duration" [(ngModel)]="data.duration"></ion-input>
+		    <!-- <span>{{data.hours}}</span> -->
+		  </ion-item>
+		  <ion-item *ngIf="global.portfolioFilter == 'date'">
+			  <!-- <ion-label>{{ 'Select Date' | translate }}</ion-label> 
+			  <ion-datetime [(ngModel)]="data.purchased" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY"></ion-datetime>-->
+			  <ion-input type="text" placeholder="Enter Date" [(ngModel)]="data.purchased"></ion-input>
+			</ion-item>
+			<ion-item *ngIf="global.portfolioFilter == 'notes'">
+			  <!-- <ion-label position="fixed">{{ 'Notes' | translate }}:</ion-label> -->
+			  <ion-textarea rows="4" cols="20" [(ngModel)]="data.notes"></ion-textarea>
+			</ion-item>
+	  </ion-list>
+    <div class="width-100">
+	  	<ion-button (click)="doSave()">
+	  		{{'Save' | translate}}
+	  	</ion-button>
+	  </div>
+</ion-content>

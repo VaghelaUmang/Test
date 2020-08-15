@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "680838124370",
+    "firebase_url": "https://app-rentince-demo.firebaseio.com",
+    "project_id": "app-rentince-demo",
+    "storage_bucket": "app-rentince-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:680838124370:android:3f70d1adefbe6d93",
+        "android_client_info": {
+          "package_name": "com.artisanideas.apprentice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "680838124370-a0ugqtbeg7bekl3gnncqk5u4p69q9hek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWW8vPkwK481Uiu5dSJIW1wQn6ecY-6ms"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,204 @@
+<ion-header>
+  <ion-toolbar>
+		<ion-buttons slot="start">
+		  <ion-button routerLink="/home" *ngIf="!fromRequestPage">
+		    <ion-icon slot="icon-only" name="home"></ion-icon>
+		  </ion-button>
+		  <ion-button style="max-width: 130px; white-space: normal;" routerLink="/request-summary" *ngIf="fromRequestPage">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+        Return to Request
+      </ion-button>
+		</ion-buttons>
+	  <ion-title>{{'Record of Work' | translate}}</ion-title>
+	  <ion-buttons slot="end">
+	  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-card>
+		<div style="position: fixed;z-index: -10;top: -5000px;">
+			<table style="display: block;" id="my-table" [innerHTML]="tableHtml"></table>
+		</div>
+		<div style="position: fixed;z-index: -10;top: -8000px;">
+	    <table style="display: block;" id="my-table13" [innerHTML]="tableSummaryHtml"></table>
+	  </div>
+		
+		<div class="list top-list">
+	    <ion-item>
+			  <ion-label>{{'Main Category' | translate}}</ion-label>
+			  <ion-select placeholder="{{'Select One' | translate}}" [(ngModel)]="data.main_category" (ionChange)="changeMainCategory()">
+		      <ion-select-option *ngFor="let item of mainCategoryList" value="{{item.cat}}">{{item.name}}</ion-select-option>
+		    </ion-select>
+			</ion-item>
+			<ion-item *ngIf="showSubCategory">
+			  <ion-label>{{'Sub Category' | translate}}</ion-label>
+			  <ion-select placeholder="{{'Select One' | translate}}" [(ngModel)]="data.sub_category" (ionChange)="changeSubCategory()">
+		      <ion-select-option *ngFor="let item of subCategoryList" value="{{item.list_id}}">{{item.name}}</ion-select-option>
+		    </ion-select>
+			</ion-item>
+			<ion-item *ngIf="showActivity">
+		    <ion-label>{{'Activity' | translate}}</ion-label>
+	      <ion-select placeholder="{{'Select One' | translate}}" [(ngModel)]="data.inventory_item" (ionChange)="showEntries(!bShowSummary)">
+		      <ion-select-option *ngFor="let item of activities">{{item.name}}</ion-select-option>
+		    </ion-select>
+		  </ion-item>
+		  <ion-item>
+		    <ion-label>{{'Project' | translate}}</ion-label>
+	      <ion-select placeholder="{{'Select One' | translate}}" [(ngModel)]="data.address" (ionChange)="changeProject()">
+		      <ion-select-option *ngFor="let item of addressList">{{item.address}}</ion-select-option>
+		    </ion-select>
+		  </ion-item>
+		  <ion-item>
+		    <ion-label>{{'Users' | translate}}</ion-label>
+	      <ion-select multiple="true" placeholder="{{'Select One' | translate}}" [(ngModel)]="data.user" (ionChange)="loadStudentLog();">
+		      <ion-select-option *ngFor="let item of userList">{{item.user_firstname}}</ion-select-option>
+		    </ion-select>
+			</ion-item>
+		  <ion-item>
+		    <ion-label>{{'Status' | translate}}</ion-label>
+	      <ion-select placeholder="{{'Select One' | translate}}" [(ngModel)]="data.status" (ionChange)="changeFilterStatus()">
+		      <ion-select-option value="Self Check">{{'Self Check' | translate}}</ion-select-option>
+		      <ion-select-option value="Review Requested">{{'Review Requested' | translate}}</ion-select-option>
+		      <ion-select-option value="Employer Sighted">{{'Employer Sighted' | translate}}</ion-select-option>
+		      <ion-select-option value="Employer Supervised">{{'Employer Supervised' | translate}}</ion-select-option>
+		      <ion-select-option value="Employer Rejected">{{'Employer Rejected' | translate}}</ion-select-option>
+		      <ion-select-option value="Assessor Checked">{{'Assessor Checked' | translate}}</ion-select-option>
+		    </ion-select>
+		  </ion-item>
+	  	<ion-item>
+		  	<ion-label>{{'Search' | translate}}:</ion-label>
+	      <ion-input type="text" [(ngModel)]="searchTxt" (keypress)="onKeyPressed($event)"></ion-input>
+		  </ion-item>
+		  <ion-item>
+			    <ion-label>{{'Show Dates' | translate}}</ion-label>
+			    <ion-checkbox slot="start" [(ngModel)]="data.showDates" (ionChange)="showEntries();bShowSelectAll=true"></ion-checkbox>
+			</ion-item>
+		  <ion-item *ngIf="data.showDates">
+			  <ion-label>{{'Date (from)' | translate}}</ion-label>
+			  <ion-datetime [(ngModel)]="data.date_from" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" (ionChange)="showEntries()"></ion-datetime>
+			</ion-item>
+			<ion-item *ngIf="data.showDates">
+			  <ion-label>{{'Date (to)' | translate}}</ion-label>
+			  <ion-datetime [(ngModel)]="data.date_to" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" (ionChange)="showEntries()"></ion-datetime>
+			</ion-item>
+			<ion-row>
+	      <ion-col size="4">
+	        <ion-button expand="block" (click)="clearFilter()">{{'Clear' | translate}}</ion-button>
+	      </ion-col>
+	      <ion-col size="4">
+	        <ion-button expand="block" (click)="showEntries();bShowSelectAll=true">{{'List' | translate}}</ion-button>
+	      </ion-col>
+	      <ion-col size="4">
+	        <ion-button expand="block" (click)="showEntries(false)">{{'Summary' | translate}}</ion-button>
+	      </ion-col>
+	    </ion-row>
+	    <ion-row *ngIf="!bShowSummary">
+	      <ion-col size="4">
+	        <ion-button expand="block" (click)="viewTable()">{{'View Table' | translate}}</ion-button>
+	      </ion-col>
+	      <ion-col size="4">
+	        <ion-button expand="block" (click)="exportPDF()">{{'Export PDF' | translate}}</ion-button>
+	      </ion-col>
+	      <ion-col size="4">
+	        <ion-button expand="block" (click)="exportCSV()">{{'Export CSV' | translate}}</ion-button>
+	      </ion-col>
+	    </ion-row>
+	    <ion-row *ngIf="bShowSummary">
+	      <ion-col size="6">
+	        <ion-button expand="block" (click)="viewTable()">{{'View Table' | translate}}</ion-button>
+	      </ion-col>
+	      <ion-col size="6">
+	        <ion-button expand="block" (click)="exportPDF()">{{'Export PDF' | translate}}</ion-button>
+	      </ion-col>
+	    </ion-row>
+	  </div>
+	  <ion-item lines="none" style="border-bottom: solid 1px rgba(0,0,0,.13);" *ngIf="bShowSelectAll">
+		    <ion-label>{{'Select All' | translate}}</ion-label>
+		    <ion-checkbox slot="start" [(ngModel)]="data.selectAll" (click)="selectAll()"></ion-checkbox>
+		</ion-item>
+   <ion-card-content>
+     {{'ROW_Text1' | translate}}
+   </ion-card-content>
+	</ion-card>
+  <div *ngIf="!bShowSummary">
+  	<ion-list>
+  		<ion-item-sliding *ngFor="let item of inventoryList" #slidingItem>
+        <ion-item (click)="goStudentItem(slidingItem, item)">
+        	<ion-thumbnail slot="start">
+				       <img style="width: 110px;" *ngIf="item.inventory_image" src="https://www.artisanideas.co.nz/itab/database/styled/{{item.inventory_image | reverseStr}}">
+          			<img style="width: 110px;" *ngIf="!item.inventory_image" src="assets/img/YIoJsnszRE6Y948PO6u7_default-news-image.jpg">
+		  		</ion-thumbnail>
+		  		<ion-label>
+	          <div>
+	            <span style="color: blue">{{'Date' | translate}} : </span>
+	            {{item.inventory_purchased}}
+	          </div>
+	          <div style="white-space: normal">
+	            <span style="color: blue">{{'Activity' | translate}} : </span>
+	            {{item.inventory_item}}
+	          </div>
+	          <div>
+	            <span style="color: blue">{{'Project' | translate}} : </span>
+	            {{item.address}}
+	          </div>
+	          <div>
+	            <span style="color: blue">{{'Hours' | translate}} : </span>
+	            {{item.inventory_value}}
+	          </div>
+	          <div>
+	            <span style="color: blue">{{'Notes' | translate}} : </span>
+	            {{item.notes}}
+	          </div>
+	        </ion-label>
+        </ion-item>
+        <ion-item-options side="start">
+	        <ion-item-option class="text-center" (click)="addPortfolio(slidingItem, item, 0)">
+	        	{{'Quick' | translate}}<br/>{{'Add' | translate}}
+	        </ion-item-option>
+	        <ion-item-option class="text-center" color="secondary" (click)="selectPortfolio(slidingItem, item, 0)">
+	        	{{'Select' | translate}}<br/>{{'Portfolio' | translate}}
+	        </ion-item-option>
+	      </ion-item-options>
+        <ion-item-options side="end">
+		      <ion-item-option class="text-center" (click)="changeStatus(slidingItem, item, 'Self Check')">
+			      {{'Self' | translate}}<br/>{{'Check' | translate}}
+			    </ion-item-option>
+		      <ion-item-option class="text-center" color="secondary" (click)="changeStatus(slidingItem, item, 'Review Requested')">
+			      {{'Review' | translate}}<br/>{{'Requested' | translate}}
+			    </ion-item-option>
+		    </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+	    <ion-infinite-scroll-content
+	      loadingSpinner="bubbles"
+	      loadingText="Loading more data...">
+	    </ion-infinite-scroll-content>
+	  </ion-infinite-scroll>
+  </div>
+  <div *ngIf="bShowSummary">
+  	<ion-list>
+      <ion-item style="cursor: pointer;" lines="none" *ngFor="let item of summaryList" (click)="goSubSummary(item)">
+	  		<ion-label slot="start">
+          <div style="white-space: normal;">
+            {{item.name}}
+          </div>
+        </ion-label>
+        <ion-label slot="end">
+          <div>
+            {{item.hour}}
+          </div>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  <ion-item style="height: 0px;padding:0px" lines="none">
+  	<ion-label style="height: 0px;padding:0px">{{'Portfolio List' | translate}}</ion-label>
+	  <ion-select placeholder="{{'Select One' | translate}}"  (ionChange)="selPortfolio()" [(ngModel)]="selectedPortfolio" #select1 style="height: 0px;padding:0px" >
+	    <ion-select-option *ngFor="let item of portfolioList" value="{{item.list_id}}">
+	    	{{item.name}}
+	    </ion-select-option>
+	  </ion-select>
+  </ion-item>
+</ion-content>

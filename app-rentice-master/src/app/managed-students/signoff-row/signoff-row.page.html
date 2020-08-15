@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-button routerLink="/signoff">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>(first_name) (last_name)</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<ion-card class="help-card">
+      <ion-card-header>
+        <ion-card-subtitle>Instructions</ion-card-subtitle>
+        <ion-card-title>Select an Entry from the List or Swipe Left</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Select an entry to view more details, you can select 'Add' within that page</p>
+      </ion-card-content>
+</ion-card>
+  <ion-button class="button button-stable button-block" routerLink="/signoff-qual">
+    Save and Continue
+  </ion-button>
+  <ion-card class="help-card">
+  <ion-item>
+      <ion-label>Main Category</ion-label>
+      <ion-select placeholder="Select One">
+        <ion-select-option></ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+			  <ion-label position="fixed">Search:</ion-label>
+			  <ion-textarea></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Checked/Added to Current Sign Off Record</ion-label>
+      <ion-checkbox slot="start"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Show Dates</ion-label>
+      <ion-checkbox slot="start"></ion-checkbox>
+    </ion-item>
+        <ion-button expand="block" (click)="clearFilter()">Clear</ion-button>
+   </ion-card>
+   <ion-item>
+      <ion-label>Select All</ion-label>
+      <ion-checkbox slot="start"></ion-checkbox>
+    </ion-item>
+    <ion-list>
+   <ion-item-sliding>
+      <ion-item routerLink="/signoff-viviewentry">
+        <ion-thumbnail  slot="start">
+         <img src="/assets/placeholder.png">
+        </ion-thumbnail>
+        <ion-label>Entry One</ion-label>
+        Added
+      </ion-item>
+              <ion-item-options side="end">
+	      <ion-item-option color="success">Select</ion-item-option>
+	      <ion-item-option color="danger">UnSelect</ion-item-option>
+	    </ion-item-options>
+	</ion-item-sliding>
+	<ion-item-sliding>
+      <ion-item routerLink="/signoff-viviewentry">
+        <ion-thumbnail  slot="start">
+         <img src="/assets/placeholder.png">
+        </ion-thumbnail>
+        <ion-label>Entry Two</ion-label>
+       </ion-item>
+        <ion-item-options side="end">
+	      <ion-item-option color="success">Select</ion-item-option>
+	      <ion-item-option color="danger">UnSelect</ion-item-option>
+	    </ion-item-options>
+	</ion-item-sliding>
+	<ion-item-sliding>
+      <ion-item routerLink="/signoff-viviewentry">
+        <ion-thumbnail  slot="start">
+         <img src="/assets/placeholder.png">
+        </ion-thumbnail>
+        <ion-label>Entry Three</ion-label>
+        Added
+      </ion-item>
+        <ion-item-options side="end">
+	      <ion-item-option color="success">Select</ion-item-option>
+	      <ion-item-option color="danger">UnSelect</ion-item-option>
+	    </ion-item-options>
+	</ion-item-sliding>
+    </ion-list>
+
+  <ion-button class="button button-stable button-block" routerLink="/signoff-qual">
+    Save and Continue
+  </ion-button>
+</ion-content>

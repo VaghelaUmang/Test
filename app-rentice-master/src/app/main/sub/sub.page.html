@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+   <ion-buttons slot="start">
+    <ion-button routerLink="/main">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <ion-title>{{ 'Sub Categories' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!--<div>
+    <ion-button routerLink="/activity">Go to Activity Page</ion-button>
+  </div>-->
+  <!--<ion-grid>
+    <ion-row>
+      <ion-col>
+      <ion-card class="submenu-card">
+        <ion-img src="/assets/enter_activity.png"></ion-img>
+        <ion-card-header>
+          <ion-card-subtitle>Sub Cat 1</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+      </ion-col>
+      <ion-col>
+      <ion-card class="submenu-card">
+        <ion-img src="/assets/enter_activity.png"></ion-img>
+        <ion-card-header>
+          <ion-card-subtitle>Sub Cat 2</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>-->
+  <div *ngIf="bListView">
+    <ion-list>
+      <ion-item *ngFor="let item of subCategoryList" (click)="clickCategory(item)" style="cursor: pointer;">
+        {{item.name}}
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="!bListView">
+    <div class="col col-50" *ngFor="let item of subCategoryList" style="display: inline-block;">
+      <a (click)="clickCategory(item)" style="display:block;">
+        <img *ngIf="(!global.bDownloadMain || isOnline)" src="https://artisanideas.co.nz/itab/page109/page112/styled-3/{{item.sub_image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;" alt="{{item.name}}">
+        <img *ngIf="global.bDownloadSub && global.isCordova && !isOnline" src="{{item.cordova_image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;" alt="{{item.name}}">
+        <img *ngIf="global.bDownloadSub && !global.isCordova && !isOnline" src="{{item.local_image}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;" alt="{{item.name}}">
+      </a>
+    </div>
+  </div>
+</ion-content>

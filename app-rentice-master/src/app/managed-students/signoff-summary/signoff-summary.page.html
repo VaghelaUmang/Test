@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-button (click)="returnPage()">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{user.user_firstname}} {{user.user_lastname}} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="help-card">
+      <ion-card-header>
+        <ion-card-subtitle>Add your own notes and photos</ion-card-subtitle>
+        <ion-card-title>Sign Off Record - Summary Notes</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>The Note area is free text and has no character limit, if you repeat the same items at every signoff, let Artisan Ideas know and we might add it to the template</p>
+      </ion-card-content>
+  </ion-card>
+  <ion-row *ngIf="!isReadonly">
+    <ion-col>
+      <ion-button expand="block" (click)="goRecordOfWork()">{{'Go to your Record of Work' | translate}}</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button expand="block" (click)="goQualification()">{{'Go to your Qualification' | translate}}</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-card padding>
+    <ion-item>
+        <ion-label position="stacked" style="font-size: 14px;">Assessor Note:</ion-label>
+        <ion-textarea rows="8" cols="20" [(ngModel)]="tutor_notes" [readonly]="currentStatus==2"></ion-textarea>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="photoInput1.click()" *ngIf="currentStatus!=2">
+          Add Photo
+        </ion-button>
+        <input type="file" name="file7" id="file7" class="inputfile" (change)="selectFileToUpload($event, 1)" #photoInput1/>
+        <ion-img  *ngIf="image1.length>0 && !photo1" src="https://www.artisanideas.co.nz/itab/database/styled/{{image1 | reverseStr}}"></ion-img>
+        <ion-img *ngIf="!photo1 && image1.length<1" src="/assets/placeholder.png"></ion-img>
+        <img *ngIf="photo1" [src]="photo1.data" />
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" (click)="photoInput2.click()" *ngIf="currentStatus!=2">
+          Add Photo
+        </ion-button>
+        <input type="file" name="file8" id="file8" class="inputfile" (change)="selectFileToUpload($event, 2)" #photoInput2/>
+        <ion-img  *ngIf="image2.length>0 && !photo2" src="https://www.artisanideas.co.nz/itab/database/styled/{{image2 | reverseStr}}"></ion-img>
+        <ion-img *ngIf="!photo2 && image2.length<1" src="/assets/placeholder.png"></ion-img>
+        <img *ngIf="photo2" [src]="photo2.data" />
+      </ion-col>
+    </ion-row>
+    <ion-button class="button button-stable button-block" (click)="saveNotePhoto()" *ngIf="currentStatus!=2">
+      Save
+    </ion-button>
+  </ion-card>
+  <ion-card>
+    <ion-card-title>{{'Qualification Areas' | translate}}</ion-card-title>
+    <ion-list *ngFor="let item of unitSummary" class="main-item">
+      <ion-list-header>
+        <ion-row>
+          <ion-col class="name" (click)="item.unit.expand = !item.unit.expand">
+            <h4>{{item.unit.unit}} {{item.unit.name}}</h4>
+          </ion-col>
+          <ion-col class="text-right">
+            <h6 [ngClass]="{'inprogress': item.unit.status == 'In Progress', 'finished': item.unit.status == 'Finished', 'completed': item.unit.status == 'Completed'}">{{item.unit.status}}</h6>
+          </ion-col>
+        </ion-row>
+      </ion-list-header>
+      <ion-list *ngIf="item.unit.expand" style="margin-left: 20px;">
+        <div *ngIf="item.element.length > 0 && !isReadonly">
+          <ion-item>
+            <ion-label>{{'Select All' | translate}}</ion-label>
+            <ion-checkbox slot="start" (ionChange)="selectAll(item)"></ion-checkbox>
+          </ion-item>
+        </div>
+        <ion-item *ngFor="let subitem of item.element" class="sub-item" (click)="goUpdatePage(item, subitem)">
+          <ion-row>
+            <ion-col class="name">
+              <h5>{{subitem.name}}</h5>
+            </ion-col>
+            <ion-col class="text-right">
+              <h6 [ngClass]="{'inprogress': subitem.status=='In Progress', 'finished': subitem.status=='Finished', 'completed': subitem.status=='Completed'}">{{subitem.status}}</h6>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </ion-list>
+    <!-- <ion-list>
+      <ion-item>
+        <ion-label>Qual Two</ion-label>
+      </ion-item>
+      <ion-item-sliding>
+          <ion-item>
+            <ion-label>Sub Qual 2.1</ion-label>
+          </ion-item>
+            <ion-item-options side="end">
+            <ion-item-option color="danger">{{'Return to In-Progress' | translate}}</ion-item-option>
+          </ion-item-options>
+      </ion-item-sliding>
+    </ion-list> -->
+  </ion-card>
+  <ion-card>
+    <ion-card-title>{{'Record of Work Entries' | translate}}</ion-card-title>    
+    <ion-list>
+      <ion-item-sliding *ngFor="let item of recordWorkList;" #slidingItem>
+        <ion-item style="cursor: pointer;">
+          <ion-thumbnail slot="start">
+             <img style="width: 110px;" *ngIf="item.photo" src="https://www.artisanideas.co.nz/itab/database/styled/{{item.photo | reverseStr}}">
+              <img style="width: 110px;" *ngIf="!item.photo" src="assets/img/YIoJsnszRE6Y948PO6u7_default-news-image.jpg">
+          </ion-thumbnail>
+          <ion-label text-wrap>{{item.inventory_item}}</ion-label>
+        </ion-item>
+        <ion-item-options side="end" *ngIf="!isReadonly">
+          <ion-item-option (click)="changeStatus(slidingItem, item, 'Assessor Checked')">{{'Checked' | translate}}</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-card>
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block" (click)="exportPDF()">{{'Export as PDF' | translate}}</ion-button>
+    </ion-col>
+    <ion-col *ngIf="!isReadonly">
+      <ion-button expand="block" (click)="notifyUser()">{{'Complete Sign off' | translate}}</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

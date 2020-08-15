@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/view-tutor-unit-standard">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{assessor.user_firstname}} {{assessor.user_lastname}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="list top-list">
+    <ion-list class="main-item">
+      <ion-list-header>
+        <ion-row>
+          <ion-col class="name">
+            <h4>{{global.currentUnit.unit}} {{global.currentUnit.name}}</h4>
+          </ion-col>
+          <ion-col class="text-right">
+            <h6>{{global.currentUnit.status | translate}}</h6>
+          </ion-col>
+        </ion-row>
+      </ion-list-header>
+      <div *ngIf="global.currentElement">
+        <ion-list lines="none">
+          <ion-item class="sub-item">
+            <ion-row>
+              <ion-col class="name">
+                <h5>{{global.currentElement.name}}</h5>
+              </ion-col>
+              <ion-col class="text-right">
+                <h6>{{global.currentElement.status | translate}}</h6>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+        <div class="border">
+          <ion-item>
+            <ion-label>{{'Status' | translate}}</ion-label>
+            <ion-select  [(ngModel)]="data.status" placeholder="{{'Select To Update' | translate}}">
+              <ion-select-option  value="Not Required">{{'Not Required' | translate}}</ion-select-option>
+              <ion-select-option  value="Incomplete">{{'Incomplete' | translate}}</ion-select-option>
+              <ion-select-option  value="In Progress">{{'In Progress' | translate}}</ion-select-option>
+              <ion-select-option  value="Completed">{{'Completed' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{'Note' | translate}}:</ion-label>
+            <ion-input type="text" [(ngModel)]="noteText" (keypress)="onNoteTextPressed($event)"></ion-input>
+          </ion-item>
+          <div class="width-100">
+            <ion-button (click)="saveStatus()">{{'Save Trainee Update' | translate}}</ion-button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="global.currentElementList.length > 0">
+        <ion-list *ngFor="let item of currentElementList">
+          <ion-item class="sub-item">
+            <ion-checkbox slot="start" [(ngModel)]="item.checked"></ion-checkbox>
+            <ion-row>
+              <ion-col class="name">
+                <h5>{{item.name}}</h5>
+              </ion-col>
+              <ion-col class="text-right">
+                <h6>{{item.status | translate}}</h6>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+        <div class="border">
+          <ion-item>
+            <ion-label>{{'Status' | translate}}</ion-label>
+            <ion-select  [(ngModel)]="data.status1" placeholder="{{'Select To Update' | translate}}">
+              <ion-select-option  value="Not Required">{{'Not Required' | translate}}</ion-select-option>
+              <ion-select-option  value="Incomplete">{{'Incomplete' | translate}}</ion-select-option>
+              <ion-select-option  value="In Progress">{{'In Progress' | translate}}</ion-select-option>
+              <ion-select-option  value="Completed">{{'Completed' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{'Note' | translate}}:</ion-label>
+            <ion-input type="text" [(ngModel)]="data.noteText1" (keypress)="onNoteTextPressed($event)"></ion-input>
+          </ion-item>
+          <div class="width-100">
+            <ion-button (click)="saveStatus1()">{{'Save Trainee Update' | translate}}</ion-button>
+          </div>
+        </div>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

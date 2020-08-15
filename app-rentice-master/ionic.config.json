@@ -1,0 +1,8 @@
+{
+  "name": "app-rentice",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": ""
+}

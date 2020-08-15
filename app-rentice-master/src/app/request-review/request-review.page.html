@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="help-card">
+    <ion-img src="/assets/request_review.jpg"></ion-img>
+    <ion-card-header>
+      <ion-card-subtitle>{{'Organsise your work and' | translate}}</ion-card-subtitle>
+      <ion-card-title>{{'Request a Review' | translate}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{'RequestView_TEXT1' | translate}}</p>
+      <p>{{'RequestView_TEXT2' | translate}}</p>
+    </ion-card-content>
+  </ion-card>
+    <ion-row>
+    <ion-col>
+      <ion-button expand="block" routerLink="/student-log">{{'Go to your Record of Work' | translate}}</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button expand="block" routerLink="/search-by-us">{{'Go to your Qualification' | translate}}</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-button expand="block" (click)="createNew()">{{'Create New' | translate}}</ion-button>
+  <ion-list>
+    <ion-item *ngFor="let item of requestList;" (click)="goRequestViewItem(item)">
+      <ion-label>{{'Request' | translate}} #{{item.list_id}} - {{item.created | slice:0:10}}</ion-label>
+     {{item.status}}
+    </ion-item>
+  </ion-list>
+</ion-content>

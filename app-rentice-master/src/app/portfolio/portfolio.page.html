@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+   <ion-buttons slot="start">
+    <ion-button routerLink="/portfolio-list">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+   </ion-buttons>
+    <ion-title>{{'Portfolios' | translate}} 
+      <span *ngIf="currentPortfolio">- {{currentPortfolio.name}}</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-card class="help-card">
+      <ion-img src="/assets/portfolio_banner.jpg"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>{{'Portfolio_Page_Text1' | translate}}</ion-card-subtitle>
+        <ion-card-title>{{'Portfolio Details' | translate}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{'Portfolio_Page_Text2' | translate}}</p>
+      </ion-card-content>
+    </ion-card>
+  <div style="position: fixed;z-index: -10;top: -8000px;">
+    <table style="display: block;" id="my-table15" [innerHTML]="tableHtml"></table>
+  </div>
+  <div *ngIf="bLoaded && portfolioItemList.length < 1">
+    There is no portfolio items.
+  </div>
+  <div *ngIf="bLoaded && portfolioItemList.length > 0">
+    <ion-button expand="full" (click)="exportPDF()">{{'Export PDF' | translate}}</ion-button>
+  </div>
+  <ion-list lines="none">
+      <ion-item-sliding *ngFor="let item of portfolioItemList" #slidingItem>
+        <ion-item class="main-item">
+          <div [ngClass]="{'hide': item.hide_activity == 1}" style="position: absolute;top: 20px;left: 15px;white-space: normal" class="activity" (click)="goPortfolioItem(item, 'activity')">
+            {{item.activity}}
+          </div>
+          <div>
+            <div class="image">
+                <ion-img  *ngIf="item.photo" src="https://www.artisanideas.co.nz/itab/database/styled/{{item.photo | reverseStr}}" (click)="photoInput.click()">
+                </ion-img>
+                <img  *ngIf="!item.photo" src="assets/img/YIoJsnszRE6Y948PO6u7_default-news-image.jpg" (click)="photoInput.click()">
+                <div> 
+                  <input type="file" name="file" id="file6" class="inputfile" (change)="selectFileToUpload($event, item)" #photoInput/>
+                </div>
+            </div>
+            <div style="position: absolute;top: 50px;left: 135px;">
+              <div class="sub-item" [ngClass]="{'hide': item.hide_main == 1}" (click)="goPortfolioItem(item, 'main category')">
+                <span class="label-txt">{{'Main Category' | translate}} : </span>
+                {{item.mainCat}}
+              </div>
+              <div class="sub-item" [ngClass]="{'hide': item.hide_sub == 1}" (click)="goPortfolioItem(item, 'sub category')">
+                <span class="label-txt">{{'Sub Category' | translate}} : </span>
+                {{item.subCat}}
+              </div>
+              <div class="sub-item" [ngClass]="{'hide': item.hide_project == 1}" (click)="goPortfolioItem(item, 'project')">
+                <span class="label-txt">{{'Project' | translate}} : </span>
+                {{item.address}}
+              </div>
+              <div class="sub-item" [ngClass]="{'hide': item.hide_duration == 1}" (click)="goPortfolioItem(item, 'duration')">
+                <span class="label-txt">{{'Duration' | translate}} : </span>
+                {{item.value}}
+              </div>
+              <div class="sub-item" [ngClass]="{'hide': item.hide_date == 1}" (click)="goPortfolioItem(item, 'date')">
+                <span class="label-txt">{{'Date' | translate}} : </span>
+                {{item.purchased}}
+              </div>
+            </div>
+          </div>
+          <div class="notes" [ngClass]="{'hide': item.hide_notes == 1}" (click)="goPortfolioItem(item, 'notes')">
+            <span class="label-txt">{{'Notes' | translate}} : </span>
+            <span>{{item.notes}}</span>
+          </div>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option class="text-center" (click)="removeItem(slidingItem, item)">
+            {{'Delete' | translate}}
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+  </ion-list>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+	  <ion-buttons slot="start">
+	    <ion-button routerLink="/student-log">
+	      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+	    </ion-button>
+	  </ion-buttons>
+    <ion-title>{{'Summary' | translate}}</ion-title>
+    <!--<ion-buttons slot="end">
+	    <ion-button routerLink="/student-log">
+	      View as Chart
+	    </ion-button>
+	  </ion-buttons>-->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<!--<ion-segment (ionChange)="sortByFiler($event)" value="all">
+	  <ion-segment-button checked value="all">
+	    All
+	  </ion-segment-button>
+	  <ion-segment-button checked="false" value="active">
+	    Hours
+	  </ion-segment-button>
+	  <ion-segment-button checked="false" value="completed">
+	    No Hours
+	  </ion-segment-button>
+	</ion-segment>-->
+	<ion-label color="primary" padding>
+		<h2>{{'View_Summary_Text1' | translate}}</h2>
+	</ion-label>
+	<div>
+  	<ion-list>
+        <ion-item style="cursor: pointer;" lines="none" *ngFor="let item of renderList" item="item" (click)="goSubSummary(item)">
+		  		<ion-label slot="start">
+	          <div style="white-space: normal;">
+	            {{item.name}}
+	          </div>
+	        </ion-label>
+	        <ion-label slot="end">
+	          <div>
+	            {{item.hour}}
+	          </div>
+	        </ion-label>
+        </ion-item>
+      </ion-list>
+  </div>
+</ion-content>

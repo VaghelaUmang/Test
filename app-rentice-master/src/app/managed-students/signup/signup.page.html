@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+    <ion-button routerLink="/managed-students">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <ion-title>{{'Sign Up' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="help-card">
+    <ion-img src="/assets/student_banner.png"></ion-img>
+    <ion-card-header>
+      <ion-card-subtitle>{{'Sign up a new' | translate}}</ion-card-subtitle>
+      <ion-card-title>{{'Trainee' | translate}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+    <p>{{'Signup_Page_Text1' | translate}}</p>
+    <p>
+      {{'Signup_Page_Text2' | translate}}
+    </p>
+    </ion-card-content>
+  </ion-card>
+  <div padding>
+      <!-- <div *ngIf="user">
+        (provider) {{user.provider}}
+      </div>
+      <div *ngIf="user">
+       (faculty) {{user.faculty}}
+      </div>
+      <div *ngIf="user">
+       (tutor) {{user.tutor}}
+      </div>
+      <div *ngIf="user">
+       (User_roles) {{user.user_roles}}
+      </div> -->
+      <ion-item>
+        <ion-label>{{'Qualification' | translate}}</ion-label>
+        <ion-select placeholder="qual" [(ngModel)]="data.qual">
+          <ion-select-option *ngFor="let item of quals" [value]="item.list_id">{{item.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'Student ID' | translate}}:</ion-label>
+        <ion-input placeholder="Enter Student ID" type="text" [(ngModel)]="data.student_id"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'First Name' | translate}}:</ion-label>
+        <ion-input placeholder="Enter First Name" type="text" [(ngModel)]="data.first_name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'Last Name' | translate}}:</ion-label>
+        <ion-input type="text" placeholder="Enter Last Name" [(ngModel)]="data.last_name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'Email' | translate}}:</ion-label>
+        <ion-input type="text" placeholder="Enter Email" [(ngModel)]="data.email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'Group' | translate}}</ion-label>
+        <ion-select placeholder="grp" [(ngModel)]="data.group">
+          <ion-select-option *ngFor="let item of groups" [value]="item.list_id">{{item.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'Password' | translate}}:</ion-label>
+        <ion-input type="password" placeholder="Enter Password" [(ngModel)]="data.password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'Repeat' | translate}}:</ion-label>
+        <ion-input type="password" placeholder="Confirm Password" [(ngModel)]="data.re_password"></ion-input>
+      </ion-item>
+      <ion-button expand="full" (click)="registerStudent()">
+        {{'Save' | translate}}
+      </ion-button>
+    </div>
+</ion-content>

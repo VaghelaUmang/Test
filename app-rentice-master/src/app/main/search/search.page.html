@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/main">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ 'Search' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar
+    mode="md"
+    [(ngModel)]="searchTerm"
+    (ionChange)="searchTermChanged()"
+    (keypress)="onKeyPressed($event)"
+    (ionCancel)="onCancel()"
+    (ionClear)="onClear()"
+  ></ion-searchbar>
+    <ion-button  expand="block" color="primary" (click)="doSearch()">
+    {{ 'Search' | translate }}
+  </ion-button>
+  <ion-label>{{ 'Quick search buttons' | translate }}</ion-label>
+  <ion-row>
+    <ion-col *ngIf="keyword1 != ''">
+      <ion-button  expand="block" color="primary" (click)="searchTerm=keyword1;doSearch()">
+        {{keyword1}}
+      </ion-button>
+    </ion-col>
+    <ion-col *ngIf="keyword2 != ''">
+      <ion-button  expand="block" color="primary" (click)="searchTerm=keyword2;doSearch()">
+        {{keyword2}}
+      </ion-button>
+    </ion-col>
+    <ion-col *ngIf="keyword3 != ''">
+      <ion-button  expand="block" color="primary" (click)="searchTerm=keyword3;doSearch()">
+        {{keyword3}}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+    <ion-row>
+    <ion-col *ngIf="keyword4 != ''">
+      <ion-button  expand="block" color="primary" (click)="searchTerm=keyword4;doSearch()">
+        {{keyword4}}
+      </ion-button>
+    </ion-col>
+    <ion-col *ngIf="keyword5 != ''">
+      <ion-button  expand="block" color="primary" (click)="searchTerm=keyword5;doSearch()">
+        {{keyword5}}
+      </ion-button>
+    </ion-col>
+    <ion-col *ngIf="keyword6 != ''">
+      <ion-button  expand="block" color="primary" (click)="searchTerm=keyword6;doSearch()">
+        {{keyword6}}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <div *ngIf="renderGroups.length < 1">
+    <h4>{{ 'There is no result.' | translate }}</h4>
+  </div>
+  <ion-list *ngFor="let item of renderGroups" class="main-item">
+    <ion-list-header>
+      <h3>{{item.name}}</h3>
+    </ion-list-header>
+    <ion-item *ngFor="let subItem of item.values" class="sub-item">
+      <ion-list>
+        <ion-list-header (click)="clickSubCat(item, subItem)" style="cursor: pointer;">
+          <h5>{{subItem.name}}</h5>
+        </ion-list-header>
+        <ion-item *ngFor="let value of subItem.values" class="item-value" (click)="clickActivity(item, subItem, value)" style="cursor: pointer;">
+          <ion-thumbnail slot="start">
+          </ion-thumbnail>
+          <ion-label>
+            <h5>{{value.name}}</h5>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+  </ion-list>
+</ion-content>

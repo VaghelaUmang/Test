@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button routerLink="/settings">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <ion-title>{{'Edit Detail' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-card class="help-card">
+      <ion-img src="/assets/settings.png"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>{{'Update_Detail_Text1' | translate}}</ion-card-subtitle>
+        <ion-card-title>{{'Account' | translate}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{'Update_Detail_Text2' | translate}}</p>
+      </ion-card-content>
+    </ion-card>
+<ion-content padding>
+	<ion-list>
+		<ion-item>
+			  <ion-label position="fixed">{{'First Name' | translate}}</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.firstname"></ion-input>
+		</ion-item>
+		<ion-item>
+			  <ion-label position="fixed">{{'Last Name' | translate}}</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.lastname"></ion-input>
+		</ion-item>
+		<ion-item>
+			  <ion-label position="fixed">{{'Email' | translate}}</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.email"></ion-input>
+		</ion-item>
+		<ion-item>
+      <ion-label>{{'Language' | translate}}</ion-label>
+      <ion-select placeholder="Select One" [(ngModel)]="data.language" (ionChange)="changeLang()">
+        <ion-select-option value="en">English</ion-select-option>
+        <ion-select-option value="te-reo">Te Reo (In progress)</ion-select-option>
+        <ion-select-option value="samoan">Samoan (Coming Soon)</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label>{{'Reminder' | translate}}</ion-label>
+      <ion-toggle [(ngModel)]="data.reminder" (ionChange)="toggleReminder()"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="data.reminder">
+      <ion-label>{{ 'Reminder Date' | translate }}</ion-label>
+      <ion-select multiple="true" [(ngModel)]="data.reminderWeek" [interfaceOptions]="customActionSheetOptions" mode="ios" interface="action-sheet" placeholder="{{ 'Select One' | translate }}">
+        <ion-select-option value="1">Monday</ion-select-option>
+        <ion-select-option value="2">Tuesday</ion-select-option>
+        <ion-select-option value="3">Wednesday</ion-select-option>
+        <ion-select-option value="4">Thursday</ion-select-option>
+        <ion-select-option value="5">Friday</ion-select-option>
+        <ion-select-option value="6">Saturday</ion-select-option>
+        <ion-select-option value="7">Sunday</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="data.reminder">
+      <ion-label>{{ 'Reminder Time' | translate }}</ion-label>
+      <ion-datetime [(ngModel)]="data.reminderTime" display-format="hh:mm A" picker-format="hh:mm A" minuteValues="0,15,30,45"></ion-datetime>
+    </ion-item> -->
+	</ion-list>
+	<div class="width-100">
+			<ion-button (click)="doUpdate()">
+				{{'Update' | translate}}
+			</ion-button>
+	</div>
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+   <ion-buttons slot="start">
+    <ion-button routerLink="/home">
+      <ion-icon slot="icon-only" name="home"></ion-icon>
+    </ion-button>
+   </ion-buttons>
+    <ion-title>{{ 'Calculators' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-card class="help-card">
+      <ion-img src="/assets/calculator_banner.png"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>{{ 'Select a' | translate }} </ion-card-subtitle>
+        <ion-card-title>{{ 'Calculator' | translate }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ 'Calc_Text1' | translate }}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-list lines="none">
+            <ion-item routerLink="/open-calc">
+        <ion-icon slot="start" color="medium" name="calculator"></ion-icon>
+        <ion-label>{{ 'Basic Calculator' | translate }}</ion-label>
+      </ion-item>
+    </ion-list>
+</ion-content>
+

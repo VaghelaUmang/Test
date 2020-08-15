@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title text-center>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="quickAdd()" class="width-100 button button-positive button-block">
+          {{ 'Repeat Last Entry' | translate }}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-card class="menu-card" routerLink="/main">
+        <ion-img src="/assets/enter_activity.png"></ion-img>
+        <ion-card-content>{{ 'Enter Activity' | translate }}</ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+    <ion-card class="menu-card" routerLink="/student-log" (click)="global.fromRequestPage = false;">
+      <ion-img src="/assets/student_log.png"></ion-img>
+      <ion-card-content>{{ 'Record of Work' | translate }}</ion-card-content>
+    </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-card class="menu-card" routerLink="/search-by-us" (click)="global.fromRequestPage = false;">
+        <ion-img src="/assets/qual.png"></ion-img>
+          <ion-card-content>{{ 'Qualification' | translate }}</ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card class="menu-card" routerLink="/timesheet">
+        <ion-img src="/assets/timesheet.png"></ion-img>
+          <ion-card-content>{{ 'Timesheets' | translate }}</ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-card class="menu-card" routerLink="/to-do-list">
+        <ion-img src="/assets/todo.png"></ion-img>
+          <ion-card-content>{{ 'To Do List' | translate }}</ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card class="menu-card" routerLink="/extras">
+        <ion-img src="/assets/tools.png"></ion-img>
+          <ion-card-content>{{ 'Extra Tools' | translate }}</ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

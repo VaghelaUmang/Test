@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-button routerLink="/managed-student-log">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ 'View Staff Entry' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<!--Looks exactly like the view student page except those items are read only
+<br>
+Has an extra text box 'Employer Note' that the user can edit - this links to the boss_notes field
+<br>
+Has an extra tick box 'Checked' that the user can edit - this links to the boss_check field-->
+	<div class="list">
+		<ion-item lines="none">
+		  <ion-label><b>{{ 'Main Category' | translate }}:</b></ion-label>
+		  <ion-input slot="end" type="text" [(ngModel)]="data.main_category" readonly></ion-input>
+		</ion-item>
+		<ion-item lines="none">
+		  <ion-label><b>{{ 'Sub Category' | translate }}:</b></ion-label>
+		  <ion-input slot="end" type="text" [(ngModel)]="data.sub_category" readonly></ion-input>
+		</ion-item>
+		<ion-item lines="none">
+		  <ion-label position="fixed"><b>{{ 'Activity' | translate }}:</b></ion-label>
+		  <ion-input slot="end" type="text" [(ngModel)]="data.inventory_item" readonly></ion-input>
+		</ion-item>
+		<ion-item lines="none">
+		  <ion-label position="fixed"><b>{{ 'Project' | translate }}:</b></ion-label>
+		  <ion-input slot="end" type="text" [(ngModel)]="data.address" readonly></ion-input>
+		</ion-item>
+		<ion-item lines="none">
+		  <ion-label position="fixed"><b>{{ 'Hours' | translate }}:</b></ion-label>
+		  <ion-input slot="end" type="text" [(ngModel)]="data.inventory_value" readonly></ion-input>
+		</ion-item>
+		<ion-item lines="none">
+		  <ion-label><b>{{ 'Date' | translate }}:</b></ion-label>
+		  <ion-datetime slot="end" [(ngModel)]="data.date" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" readonly></ion-datetime>
+		</ion-item>
+		<ion-item>
+		  <ion-label position="fixed"><b>{{ 'Notes' | translate }}:</b></ion-label>
+		  <ion-input slot="end" type="text" [(ngModel)]="data.notes" readonly></ion-input>
+		</ion-item>
+		<ion-item>
+		  <ion-label position="fixed"><b>{{ 'Tutor Notes' | translate }}:</b></ion-label>
+		  <ion-input slot="end" type="text" [(ngModel)]="data.tutor_notes" readonly></ion-input>
+		</ion-item>
+		<ion-item>
+		  <ion-label><b>{{ 'Employer Notes' | translate }}:</b></ion-label>
+		  <ion-input placeholder="Make comments here..." type="text" [(ngModel)]="data.boss_notes"></ion-input>
+		</ion-item>
+		<ion-item>
+	    <ion-label><b>{{ 'Employer Checked' | translate }}</b></ion-label>
+	    <ion-checkbox slot="start" [(ngModel)]="data.boss_check"></ion-checkbox>
+	  </ion-item>
+		<div>
+      <div *ngIf="!studentImg && data.image">
+        <img src="https://www.artisanideas.co.nz/itab/database/styled/{{data.image | reverseStr}}">
+      </div>
+      <div *ngIf="studentImg">
+        <img src="{{projectImg}}">
+      </div>
+    </div>
+		<div class="width-100">
+    	<ion-button (click)="doUpdate()" class="ion-button-block">{{ 'Update' | translate }}</ion-button>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+   <ion-buttons slot="start">
+    <ion-button routerLink="/projects">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <ion-title>{{'Edit Project' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="list">
+      <ion-item>
+			  <ion-label>{{'Address/Project Name' | translate}}</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.address"></ion-input>
+			</ion-item>
+      <ion-item>
+			  <ion-label position="fixed">{{'Notes' | translate}}</ion-label>
+        <ion-textarea rows="4" cols="20" placeholder="Enter notes..." [(ngModel)]="data.notes"></ion-textarea>
+			</ion-item>
+      <ion-item>
+			  <ion-label>{{'Start Date' | translate}}</ion-label>
+			  <ion-datetime [(ngModel)]="data.date" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY"></ion-datetime>
+			</ion-item>
+			<ion-item>
+		    <ion-label>{{'Mark as Completed' | translate}}</ion-label>
+		    <ion-checkbox slot="start" [(ngModel)]="data.completed"></ion-checkbox>
+		  </ion-item>
+    </div>
+    <div class="width-100">
+      <ion-button (click)="openCamera()" *ngIf="showButton">
+        <ion-icon slot="start" name="camera"></ion-icon>
+        {{'Add Photo' | translate}}
+      </ion-button>
+    </div>
+    <div>
+      <div *ngIf="!projectImg && data.project_image" (click)="openCamera()">
+        <img src="https://www.artisanideas.co.nz/itab/database/styled/{{data.project_image | reverseStr}}">
+      </div>
+      <div *ngIf="projectImg" (click)="openCamera()">
+        <img src="{{projectImg}}">
+      </div>
+    </div>
+    <div class="width-100">
+    	<ion-button color="danger" (click)="doRemove()">
+    		<ion-icon slot="start" name="trash"></ion-icon>
+				{{'Delete' | translate}}
+			</ion-button>
+		</div>
+		<div class="width-100">
+    	<ion-button (click)="doSave()" class="ion-button-block">{{'Save' | translate}}</ion-button>
+    </div>
+</ion-content>

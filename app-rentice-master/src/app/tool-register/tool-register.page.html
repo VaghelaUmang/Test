@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+   <ion-buttons slot="start">
+    <ion-button routerLink="/home">
+      <ion-icon slot="icon-only" name="home"></ion-icon>
+    </ion-button>
+   </ion-buttons>
+    <ion-title>{{'Tool Register' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<div class="width-100">
+		<ion-button routerLink="/new-tool">{{'Enter New Tool' | translate}}</ion-button>
+	</div>
+	<ion-list>
+    <ion-item *ngFor="let item of toolList" item="item" (click)="goToolItem(item)">
+    	<ion-thumbnail slot="start">
+		       <img style="width: 120px;" *ngIf="item.image" src="https://www.artisanideas.co.nz/itab/database/styled/{{item.image | reverseStr}}">
+      			<img style="width: 120px;" *ngIf="!item.image" src="assets/img/YIoJsnszRE6Y948PO6u7_default-news-image.jpg">
+  		</ion-thumbnail>
+  		<ion-label>
+	      <div>
+	        <span style="color: blue">{{'Type' | translate}} : </span>
+	        {{item.type}}
+	      </div>
+	      <div style="white-space: normal">
+	        <span style="color: blue">{{'Brand' | translate}} : </span>
+	        {{item.brand}}
+	      </div>
+	      <div>
+	        <span style="color: blue">{{'Model' | translate}} : </span>
+	        {{item.model}}
+	      </div>
+	      <div>
+	        <span style="color: blue">{{'Serial' | translate}} # : </span>
+	        {{item.serial}}
+	      </div>
+	      <div>
+	        <span style="color: blue">{{'Tool id' | translate}} : </span>
+	        {{item.tool_id}}
+	      </div>
+	      <div>
+	        <span style="color: blue">{{'Purchased' | translate}} : </span>
+	        {{item.purchased}}
+	      </div>
+	      <div>
+	        <span style="color: blue">{{'Value' | translate}} : </span>
+	        {{item.value}}
+	      </div>
+	      <div>
+	        <span style="color: blue">{{'Notes' | translate}} : </span>
+	        {{item.notes}}
+	      </div>
+	      <div>
+	        <span style="color: blue">{{'Staff' | translate}} : </span>
+	        {{item.staff}}
+	      </div>
+	      <div>
+	        <span style="color: blue">{{'Team' | translate}} : </span>
+	        {{item.team}}
+	      </div>
+	    </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

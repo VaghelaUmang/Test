@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+    <ion-button routerLink="/signup">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <!-- <ion-title>Sign up</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="help-card">
+    <ion-img src="/assets/app_banner.png"></ion-img>
+    <ion-card-header>
+      <ion-card-subtitle>{{'Welcome' | translate}}</ion-card-subtitle>
+      <ion-card-title>{{'Signup_Email_Text1' | translate}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+     <p>
+        {{'Signup_Email_Text2' | translate}}
+        <a href="https://itunes.apple.com/nz/app/app-rentice/id1234156125?mt=8" target="_blank">
+          https://itunes.apple.com/nz/app/app-rentice/id1234156125?mt=8
+        </a>
+     </p>
+     <p>
+        {{'Signup_Email_Text3' | translate}}
+        <a href="https://play.google.com/store/apps/details?id=com.artisanideas.apprentice&hl=en" target="_blank">
+          https://play.google.com/store/apps/details?id=com.artisanideas.apprentice&hl=en
+        </a>
+     </p>
+     <p>
+        {{'Signup_Email_Text4' | translate}}
+        <a href="https://app-rentice.firebaseapp.com" target="_blank">
+          https://app-rentice.firebaseapp.com
+        </a>
+     </p>
+     <p>
+        {{'Signup_Email_Text5' | translate}}
+        <a href="https://www.artisanideas.co.nz/docs" target="_blank">
+          https://www.artisanideas.co.nz/docs
+        </a>
+        {{'Signup_Email_Text7' | translate}}
+        <a href="https://artisanideas.co.nz/docs/students/" target="_blank">
+          https://artisanideas.co.nz/docs/students/
+        </a>
+     </p>
+    </ion-card-content>
+  </ion-card>
+  <div style="min-height: 50px;">
+    <div [innerHTML]="instruct_email"></div>
+  </div>
+  <ion-list lines="none">
+    <ion-item>
+      <ion-label>{{'Signup_Email_Text6' | translate}}:</ion-label>
+      <ion-input [(ngModel)]="note" placeholder="add a note" type="text"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-list lines="none" *ngIf="global.signupUser">
+    <ion-item>
+      <ion-label>{{'Qualification' | translate}}:</ion-label>
+      <ion-text>
+        {{global.currentQual}}
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'Username' | translate}}:</ion-label>
+      <ion-text>
+        {{global.signupUser.student_id}}
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'Password' | translate}}:</ion-label>
+      <ion-text>
+        {{global.signupUser.password}}
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'First Name' | translate}}:</ion-label>
+      <ion-text>
+        {{global.signupUser.first_name}}
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'Last Name' | translate}}:</ion-label>
+      <ion-text>
+        {{global.signupUser.last_name}}
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'Email' | translate}}:</ion-label>
+      <ion-text>
+        {{global.signupUser.email}}
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'Group' | translate}}:</ion-label>
+      <ion-text>
+        {{global.currentGrp}}
+      </ion-text>
+    </ion-item>
+  </ion-list>
+  <ion-row>
+    <ion-col>
+      <ion-button expand="full" (click)="sendMail()">
+        {{'Send Email' | translate}}
+      </ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button expand="full" (click)="editSignup()">
+        {{'Edit' | translate}}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

@@ -1,0 +1,15 @@
+.list {
+	ion-label {
+		min-width: 120px;
+	}
+}
+
+.width-100 {
+	width: 90%;
+	margin: 0 auto;
+	display: block;
+	margin-bottom: 5px;
+	.button {
+		width: 100%;
+	}
+}

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button routerLink="/link-accounts">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <ion-title>Link Worker</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	    <ion-card class="help-card">
+      <ion-img src="/assets/link_banner.png"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>View your</ion-card-subtitle>
+        <ion-card-title>Workers</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>You can view multiple accounts, they just need to enter your Employer Code</p>
+        <p>Have your worker open the Link Accounts page, then the Link Employer page and enter your Employer code</p>
+      </ion-card-content>
+    </ion-card>
+	<ion-list>
+		<ion-item>
+			  <ion-label>Employer Code:</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.user_id" readonly></ion-input>
+		</ion-item>
+	</ion-list>
+</ion-content>

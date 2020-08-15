@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{'Trainees' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   <ion-card class="help-card">
+      <ion-img src="/assets/student_banner.png"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>{{'Trainees_Text_1' | translate}}</ion-card-subtitle>
+        <ion-card-title>{{'Trainees' | translate}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>
+          {{'Trainees_Text_2' | translate}}
+        </p>
+        <p>
+          {{'Trainees_Text_3' | translate}}
+        </p>
+      </ion-card-content>
+  </ion-card>
+  <div padding>
+    <ion-button class="button button-stable button-block" routerLink="/signup" *ngIf="bSignup">
+      {{'Sign Up New Trainees' | translate}}
+    </ion-button>
+    <ion-button (click)="openUsers()" class="button button-stable button-block" *ngIf="bOtherShow ">
+      {{'View Other Assessors' | translate}}
+    </ion-button>
+    <ion-select (ionChange)="assessorChange()" [(ngModel)]="selectedUser" select style="height: 0px;padding:0px" >
+      <ion-select-option *ngFor="let item of assessorList" value="{{item.user_id}}">{{item.user_firstname}} {{item.user_lastname}}</ion-select-option>
+    </ion-select>
+  </div>
+  <div>
+    <ion-searchbar 
+      placeholder="{{'Search' | translate}}"
+      mode="md"
+      [(ngModel)]="searchTerm"
+      (keypress)="onKeyPressed($event)"
+      (ionCancel)="onCancel()"
+      (ionClear)="onClear()"
+      (ionChange)="changeSearch($event)">
+    </ion-searchbar>
+  </div>
+  <ion-list lines="none">
+    <ion-item *ngFor="let item of renderUserList" detail="true" (click)="goStudentMenu(item)" routerLink="/student-menu">
+      <ion-icon slot="start" color="medium" name="contact"></ion-icon>
+      <ion-label>{{item.user_firstname}} {{item.user_lastname}}</ion-label>
+      <div slot="end">
+        <span class="count">{{item.count}}</span>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

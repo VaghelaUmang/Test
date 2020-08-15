@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+	  <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Advanced Calculator - Do Not Use</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-list class="calculator_list" lines="none">
+      <ion-item>
+        <ion-thumbnail  class="thumbnail" slot="start">
+          <img src="/assets/calculators/slab.png">
+        </ion-thumbnail>
+        <ion-label>Concrete Slab Volumne</ion-label>
+        <p><ion-note>Width x Length x Height</ion-note></p>
+      </ion-item>
+      <ion-item (click)="openUrl('https://www.facebook.com/App-rentice-1926106001042340/')">
+        <ion-thumbnail  slot="start">
+         <img src="/assets/facebook.png">
+        </ion-thumbnail>
+        <ion-label>App-Rentice Facebook Page</ion-label>
+      </ion-item>
+      <ion-item (click)="openUrl('https://www.facebook.com/Ara-Institute-of-Canterbury-ITab-Managed-Carpentry-Apprenticeships-1592295167653663/')">
+        <ion-thumbnail  slot="start">
+         <img src="/assets/ara.png">
+        </ion-thumbnail>
+        <ion-label>ARA Apprenticeships Facebook Page</ion-label>
+      </ion-item>
+      <ion-item (click)="openUrl('https://www.facebook.com/Ara-Institute-of-Canterbury-ITab-Managed-Carpentry-Apprenticeships-1592295167653663/')">
+        <ion-thumbnail  slot="start">
+         <img src="/assets/itab.png">
+        </ion-thumbnail>
+        <ion-label>ITAB Apprenticeships Facebook Page</ion-label>
+      </ion-item>
+     </ion-list> 
+   </ion-card>
+  <div class="calculator">
+    <div class="header">
+      <div class="window"></div>
+      <div class="input"><span>
+          <ion-input type="text" placeholder="0" name="display"
+                     [(ngModel)]="result">
+          </ion-input>
+        </span></div>
+    </div>
+    <div class="keys">
+      <div class="row">
+        <div class="number">
+          <span (click)="btnClicked('7')">7</span>
+          <span (click)="btnClicked('8')">8</span>
+          <span (click)="btnClicked('9')">9</span>
+        </div>
+        <div class="symbol"><span (click)="btnClicked('*')">×</span></div>
+        <div class="symbol"><span (click)="btnClicked('/')">÷</span></div>
+      </div>
+      <div class="row">
+        <div class="number">
+          <span (click)="btnClicked('4')">4</span>
+          <span (click)="btnClicked('5')">5</span>
+          <span (click)="btnClicked('6')">6</span>
+        </div>
+        <div class="symbol"><span (click)="btnClicked('+')">+</span></div>
+        <div class="symbol"><span (click)="btnClicked('-')">-</span></div>
+      </div>
+      <div class="row">
+        <div class="number">
+          <span (click)="btnClicked('1')">1</span>
+          <span (click)="btnClicked('2')">2</span>
+          <span (click)="btnClicked('3')">3</span>
+        </div>
+        <div class="symbol">
+          <span (click)="btnClicked('square')">x<sup>2</sup></span>
+        </div>
+        <div class="symbol">
+          <span (click)="btnClicked('squareroot')">√x</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="number">
+          <span class=dull (click)="btnClicked('C')">C</span>
+          <span (click)="btnClicked('0')">0</span>
+          <span (click)="btnClicked(',')">,</span>
+        </div>
+        <div class="symbol">
+          <span (click)="btnClicked('reciproc')">1/x</span>
+        </div>
+        <div class="symbol action">
+          <span (click)="btnClicked('=')">=</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

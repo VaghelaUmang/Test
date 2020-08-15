@@ -1,0 +1,17 @@
+.width-100 {
+	width: 90%;
+	margin: 0 auto;
+	display: block;
+	.button {
+		width: 100%;
+	}
+}
+
+.p-text {
+  text-align: center;
+  color: grey;
+}
+
+ion-segment-button {
+	width: 25%;
+}

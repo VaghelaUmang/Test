@@ -1,0 +1,57 @@
+<ion-header>
+<ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-button routerLink="/signoff-qual">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>(first_name) (last_name)</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<ion-card class="help-card">
+      <ion-card-header>
+        <ion-card-subtitle>Add your own notes and photos</ion-card-subtitle>
+        <ion-card-title>Sign Off Record - Summary Notes</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>The Note area is free text and has no character limit, if you repeat the same items at every signoff, let Artisan Ideas know and we might add it to the template</p>
+      </ion-card-content>
+  </ion-card>
+  <ion-button class="button button-stable button-block" routerLink="/signoff-view">
+    Save and Continue
+  </ion-button>
+  <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Prompts for you to provide a narative on Updated Qualifications</ion-card-subtitle>        <ion-card-title>Sign Off Record - Summary Notes</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Unit One Completed</p>
+        <p>Unit Two Completed</p>
+        <p>Unit Three In-Progress</p>
+        <p>Unit Four In-Progress</p>
+      </ion-card-content>
+   </ion-card>
+  <ion-item>
+			  <ion-label position="fixed">Note:</ion-label>
+			  <ion-textarea rows="8" cols="20"></ion-textarea>
+  </ion-item>
+<ion-row>
+    <ion-col>
+  <ion-button class="button button-stable button-block">
+    Add 1st Photo
+  </ion-button>
+    <ion-img src="/assets/placeholder.png"></ion-img>
+    </ion-col>
+    <ion-col>
+  <ion-button class="button button-stable button-block">
+    Add 2nd Photo
+  </ion-button>
+    <ion-img src="/assets/placeholder.png"></ion-img>
+    </ion-col>
+  </ion-row>
+    <ion-button class="button button-stable button-block" routerLink="/signoff-view">
+    Save and Continue
+  </ion-button>
+</ion-content>

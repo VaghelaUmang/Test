@@ -1,0 +1,19 @@
+.notes {
+	max-width: 180px;
+}
+
+.text-right {
+	text-align: right;
+	max-width: 120px;
+	h6 {
+		text-align: center;
+		padding: 10px 3px 10px 0px;
+	}
+}
+
+ion-row {
+	width: 100%;
+	.name {
+		cursor: pointer;
+	}
+}

@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+  	  	  <ion-buttons slot="start">
+    <ion-button routerLink="/view-to-do-list">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <ion-title>{{'Another Item' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="list">
+    	<!--<ion-item>
+			  <ion-label>Item No.</ion-label>
+			  <ion-input type="text" [(ngModel)]="data.item_no" readonly></ion-input>
+			</ion-item>-->
+			<ion-item>
+			  <ion-label>{{'Item Name' | translate}}</ion-label>
+			  <ion-input type="text" placeholder="Identify the item" [(ngModel)]="data.item_name"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Room/Element' | translate}}</ion-label>
+			  <ion-input type="text" placeholder="e.g. Master bedroom" [(ngModel)]="data.room1"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Location' | translate}}</ion-label>
+			  <ion-input type="text" placeholder="e.g. Interior" [(ngModel)]="data.room2"></ion-input>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Assigned to' | translate}}</ion-label>
+			  <ion-input type="text" placeholder="e.g. 'Staff name'" [(ngModel)]="data.assigned"></ion-input>
+			</ion-item>
+			<ion-item>
+		    <ion-label>{{'Show Dates' | translate}}</ion-label>
+		    <ion-checkbox slot="start" [(ngModel)]="data.showDates"></ion-checkbox>
+		  </ion-item>
+			<ion-item *ngIf="data.showDates">
+			  <ion-label>{{'Start Date' | translate}}</ion-label>
+			  <ion-datetime [(ngModel)]="data.date1" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY"></ion-datetime>
+			</ion-item>
+			<ion-item *ngIf="data.showDates">
+			  <ion-label>{{'Finish Date' | translate}}</ion-label>
+			  <ion-datetime [(ngModel)]="data.date2" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY"></ion-datetime>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Status' | translate}}</ion-label>
+			  <ion-select placeholder="{{'Select One' | translate}}" [(ngModel)]="data.status">
+		      <ion-select-option value="Not Started">{{'Not Started' | translate}}</ion-select-option>
+		      <ion-select-option value="In Progress">{{'In Progress' | translate}}</ion-select-option>
+		      <ion-select-option value="Completed">{{'Completed' | translate}}</ion-select-option>
+		    </ion-select>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Item Description' | translate}}</ion-label>
+			  <ion-textarea rows="4" cols="20" placeholder="{{'Describe the item...' | translate}}" [(ngModel)]="data.notes1"></ion-textarea>
+			</ion-item>
+			<ion-item>
+			  <ion-label>{{'Follow up Description' | translate}}</ion-label>
+			  <ion-textarea rows="4" cols="20" placeholder="Describe the action/s to be taken" [(ngModel)]="data.notes2"></ion-textarea>
+			</ion-item>
+      <div class="spacer" style="width: 100%; height: 9px;"></div>
+    </div>
+    <div class="width-100">
+	    <ion-button (click)="openCamera()">
+	    	<ion-icon slot="start" name="camera"></ion-icon>
+	    	{{'Add Photo' | translate}}
+	    </ion-button>
+	  </div>
+	  <div *ngIf="inventoryImg">
+	    <img src="{{inventoryImg}}">
+	  </div>
+	  <div class="width-100">
+	  	<ion-button (click)="doSave()">
+	  		{{'Save and Enter Another' | translate}}
+	  	</ion-button>
+	  </div>
+	  	  <div class="width-100">
+	  	<ion-button (click)="doSave()">
+	  		{{'Save and Return to list' | translate}}
+	  	</ion-button>
+	  </div>
+</ion-content>

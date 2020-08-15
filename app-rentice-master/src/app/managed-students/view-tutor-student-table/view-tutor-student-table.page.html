@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/view-tutor-student">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{user.user_firstname}} {{user.user_lastname}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <ion-button expand="full" (click)="exportTable()">{{'Export' | translate}}</ion-button>
+  </div>
+  <br/>
+  <div class="main-table">
+    <table id="my-table6" [innerHTML]="tableHtml"></table>
+  </div>
+
+  <div style="position: fixed;z-index: -10;top: -8000px;">
+    <table id="my-table7" [innerHTML]="tablePortraitHtml"></table>
+  </div>
+</ion-content>

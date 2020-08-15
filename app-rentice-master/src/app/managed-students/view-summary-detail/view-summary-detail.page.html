@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+	  <ion-buttons slot="start">
+	    <ion-button routerLink="/tutor-view-summary-activity">
+	      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+	    </ion-button>
+	  </ion-buttons>
+    <ion-title style="margin-left: -10px;" *ngIf="activity">{{activity.name}}</ion-title>
+    <!--<ion-buttons slot="end">
+	    <ion-button routerLink="/student-log">
+	      View as Chart
+	    </ion-button>
+	  </ion-buttons>-->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<!--<div>
+  	<ion-list>
+        <ion-item style="cursor: pointer;" lines="none" *ngFor="let item of renderList" item="item" (click)="goItem(item)">
+		  		<ion-thumbnail slot="start">
+				      <img style="width: 110px;" *ngIf="item.inventory_image" src="https://www.artisanideas.co.nz/itab/database/styled/{{item.inventory_image | reverseStr}}">
+          		<img style="width: 110px;" *ngIf="!item.inventory_image" src="assets/img/YIoJsnszRE6Y948PO6u7_default-news-image.jpg">
+		  		</ion-thumbnail>
+		  		<ion-label>
+	          <div>
+	            <span style="color: blue">Date : </span>
+	            {{item.inventory_purchased}}
+	          </div>
+	          <div style="white-space: normal">
+	            <span style="color: blue">Activity : </span>
+	            {{item.inventory_item}}
+	          </div>
+	          <div>
+	            <span style="color: blue">Project : </span>
+	            {{item.address}}
+	          </div>
+	          <div>
+	            <span style="color: blue">Hours : </span>
+	            {{item.inventory_value}}
+	          </div>
+	          <div>
+	            <span style="color: blue">Notes : </span>
+	            {{item.notes}}
+	          </div>
+	        </ion-label>
+        </ion-item>
+      </ion-list>
+  </div>-->
+  <ion-list *ngFor="let item of renderGroups" class="main-item">
+    <ion-list-header>
+      <h3>{{item.name}}</h3>
+    </ion-list-header>
+    <ion-item *ngFor="let subItem of item.values" class="sub-item">
+      <ion-list>
+        <ion-list-header (click)="clickSubCat(item, subItem)" style="cursor: pointer;">
+          <h5>{{subItem.name}}</h5>
+        </ion-list-header>
+        <ion-item lines="none" *ngFor="let value of subItem.values" class="item-value" style="cursor: pointer;">
+          <!--<ion-thumbnail slot="start">
+          </ion-thumbnail>
+          <ion-label>
+            <h5>{{value.inventory_item}}</h5>
+          </ion-label>-->
+          <ion-thumbnail slot="start">
+				       <img style="width: 110px;" *ngIf="value.inventory_image" src="https://www.artisanideas.co.nz/itab/database/styled/{{value.inventory_image | reverseStr}}">
+          			<img style="width: 110px;" *ngIf="!value.inventory_image" src="assets/img/YIoJsnszRE6Y948PO6u7_default-news-image.jpg">
+		  		</ion-thumbnail>
+		  		<ion-label>
+	          <div>
+	            <span style="color: blue">{{'Date' | translate}} : </span>
+	            {{value.inventory_purchased}}
+	          </div>
+	          <div style="white-space: normal">
+	            <span style="color: blue">{{'Activity' | translate}} : </span>
+	            {{value.inventory_item}}
+	          </div>
+	          <div>
+	            <span style="color: blue">{{'Project' | translate}} : </span>
+	            {{value.address}}
+	          </div>
+	          <div>
+	            <span style="color: blue">{{'Hours' | translate}} : </span>
+	            {{value.inventory_value}}
+	          </div>
+	          <div>
+	            <span style="color: blue">{{'Notes' | translate}} : </span>
+	            {{value.notes}}
+	          </div>
+	        </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      {{ 'Help' | translate }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="help-card">
+      <ion-img src="/assets/help_banner.png"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>{{ 'Get Help with' | translate }}</ion-card-subtitle>
+        <ion-card-title>{{ 'App-Rentice Online Documents' | translate }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ 'Select from the list below to open the document webpage' | translate }}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-list lines="none">
+      <ion-list-header>
+      </ion-list-header>
+      <ion-item (click)="openUrl('https://artisanideas.co.nz/docs/news')">
+        <ion-icon slot="start" color="medium" name="sync"></ion-icon>
+        <ion-label>{{ 'App-Rentice App Update/s' | translate }}</ion-label>
+      </ion-item>
+      <ion-item (click)="openUrl('https://artisanideas.co.nz/docs/quick_start/')">
+        <ion-icon slot="start" color="medium" name="build"></ion-icon>
+        <ion-label>{{ 'Quick Start' | translate }}</ion-label>
+      </ion-item>
+      <ion-item (click)="openUrl('https://artisanideas.co.nz/docs/students/')">
+        <ion-icon slot="start" color="medium" name="school"></ion-icon>
+        <ion-label>{{ 'Tutorials' | translate }}</ion-label>
+      </ion-item>
+      <ion-item (click)="openUrl('https://artisanideas.co.nz/docs/tutors')">
+        <ion-icon slot="start" color="medium" name="star"></ion-icon>
+        <ion-label>{{ 'Tutors / Assessors' | translate }}</ion-label>
+        </ion-item>
+      <ion-item (click)="openUrl('https://artisanideas.co.nz/docs/employers')">
+        <ion-icon slot="start" color="medium" name="body"></ion-icon>
+        <ion-label>{{ 'Employers / Managers' | translate }}</ion-label>
+      </ion-item>
+      <ion-item (click)="openUrl('https://artisanideas.co.nz/docs/manage_users')">
+        <ion-icon slot="start" color="medium" name="people"></ion-icon>
+        <ion-label>{{ 'HOD - Managing Users' | translate }}</ion-label>
+      </ion-item>
+      <ion-item (click)="openUrl('https://artisanideas.co.nz/docs/curriculum_manager')">
+        <ion-icon slot="start" color="medium" name="document"></ion-icon>
+        <ion-label>{{ 'Curriculum Management' | translate }}</ion-label>
+      </ion-item>
+      <ion-item (click)="openUrl('https://artisanideas.co.nz/docs/Privacy%20Statement/')">
+        <ion-icon slot="start" color="medium" name="lock"></ion-icon>
+      <ion-label>{{ 'Privacy Statement' | translate }}</ion-label>
+      </ion-item>
+    </ion-list>
+</ion-content>

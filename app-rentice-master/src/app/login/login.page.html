@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+        <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content no-padding class="manual-remove-top-padding">
+
+  <div class="spacer" style="width: 300px; height: 10px;"></div>
+  <div>
+    <img src="assets/img/apprentice_clear.png" style="display: block; width: 40%; height: auto; margin-left: auto; margin-right: auto">
+  </div>
+  <h1 id="login-heading1">App-rentice</h1>
+  <div padding id="login-form1" class="list">
+		<ion-item class="justify-content: center">
+		  <ion-label><b>{{ 'Username' | translate }}:</b></ion-label>
+		  <ion-input [(ngModel)]="username"></ion-input>
+		</ion-item>
+		<ion-item>
+		  <ion-label position="fixed"><b>{{ 'Password' | translate }}:</b></ion-label>
+		  <ion-input type="password" [(ngModel)]="password" (keydown)="keyDown($event)"></ion-input>
+		</ion-item>
+  </div>
+  <div padding>
+    <ion-button id="login-button2" (click)="login()" expand="full">
+    	{{ 'Login' | translate }} 
+    </ion-button>
+  </div>
+  <ion-row padding>
+      <ion-col>
+        <ion-button onclick="window.open('https://www.artisanideas.co.nz/itab/users/page72/contact/', '_blank', 'location=yes')" expand="block">
+          {{ 'Sign Up' | translate }} 
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button id="login-button25" onclick="window.open('https://www.artisanideas.co.nz/itab/users/users/send_password_reset.php', '_blank', 'location=yes')" expand="block">
+          {{ 'Forgot Password' | translate }}
+        </ion-button>
+      </ion-col>
+  </ion-row>
+</ion-content>

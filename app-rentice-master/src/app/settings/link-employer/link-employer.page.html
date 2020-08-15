@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+   <ion-buttons slot="start">
+    <ion-button routerLink="/link-accounts">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <ion-title>Link Employer</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+ <ion-card class="help-card">
+      <ion-img src="/assets/link_banner.png"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>Allow your</ion-card-subtitle>
+        <ion-card-title>Employer or Manager</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>You can only allow ONE account to access your entries</p>
+        <p>See the Employers / Managers Tutorial in the Help page for more info</p>
+      </ion-card-content>
+    </ion-card>
+    <div class="list">
+      <ion-item>
+        <ion-label position="stacked">You are currently linked to the follow account</ion-label>
+        <ion-input type="text" readyonly [(ngModel)]="remove_id"></ion-input>
+      </ion-item>
+    </div>
+    <div class="width-100">
+      <ion-button (click)="doRemove()">
+        Remove Access
+      </ion-button>
+    </div>
+    <div class="list">
+      <ion-item>
+        <ion-label position="stacked">To Add or Change Employer, Enter the code below</ion-label>
+        <ion-input type="number" placeholder="" [(ngModel)]="add_id"></ion-input>
+      </ion-item>
+    </div>
+    <div class="width-100">
+      <ion-button (click)="doAdd()">
+        Add Employer
+      </ion-button>
+    </div>
+</ion-content>

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+   <ion-buttons slot="start">
+    <ion-button routerLink="/home">
+      <ion-icon slot="icon-only" name="home"></ion-icon>
+    </ion-button>
+   </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-card class="help-card">
+      <ion-img src="/assets/extra_tools.png"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>{{ 'Get more out of' | translate }}</ion-card-subtitle>
+        <ion-card-title>{{ 'App-Rentice' | translate }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ 'Extras_Text1' | translate }}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-list lines="none">
+      <ion-item routerLink="/portfolio-list">
+        <ion-icon slot="start" color="medium" name="checkmark-circle-outline"></ion-icon>
+        <ion-label>{{ 'Portfolios' | translate }}</ion-label>
+      </ion-item>
+      <ion-item routerLink="/news">
+        <ion-icon slot="start" color="medium" name="paper"></ion-icon>
+        <ion-label>{{ 'News' | translate }}</ion-label>
+      </ion-item>
+        <ion-item routerLink="/tool-register">
+        <ion-icon slot="start" color="medium" name="hammer"></ion-icon>
+        <ion-label>{{ 'Tool Register' | translate }}</ion-label>
+      </ion-item>
+      <ion-item routerLink="/to-do-list">
+        <ion-icon slot="start" color="medium" name="clipboard"></ion-icon>
+        <ion-label>{{ 'To Do List' | translate }}</ion-label>
+      </ion-item>
+      <ion-item routerLink="/calculator">
+        <ion-icon slot="start" color="medium" name="calculator"></ion-icon>
+        <ion-label>{{ 'Calculators' | translate }}</ion-label>
+      </ion-item>
+      <ion-item (click)="openUrl('https://artisanideas.co.nz/csc/app-rentice/')">
+        <ion-icon slot="start" color="medium" name="basket"></ion-icon>
+        <ion-label>{{ 'CSC Discounts' | translate }}</ion-label>
+      </ion-item>
+      <ion-item routerLink="/help">
+        <ion-icon slot="start" color="medium" name="help"></ion-icon>
+        <ion-label>{{ 'Help & Tutorials' | translate }}</ion-label>
+      </ion-item>
+    </ion-list>
+</ion-content>

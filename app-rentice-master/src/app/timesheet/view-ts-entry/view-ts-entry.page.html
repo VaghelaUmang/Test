@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+  	   <ion-buttons slot="start">
+    <ion-button routerLink="/timesheet">
+      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <ion-title>{{'View Timesheet Entry' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="list">
+    	<ion-item lines="none">
+			  <ion-label>{{'Select Date' | translate}}</ion-label>
+			  <div>{{data.timesheet_date}}</div>
+			</ion-item>
+	    <ion-item lines="none">
+			  <ion-label>{{'Start time' | translate}}</ion-label>
+			  <div>{{data.starttime}}</div>
+			</ion-item>
+		<ion-item lines="none">
+			  <ion-label>{{'Finish time' | translate}}</ion-label>
+			  <div>{{data.finishtime}}</div>
+			</ion-item>
+		<ion-item lines="none">
+		  	<ion-label>{{'Hours' | translate}}</ion-label>
+		  	<div>{{data.hours}}</div>
+		  </ion-item>
+		 <ion-item lines="none">
+		    <ion-label>{{'Project' | translate}}</ion-label>
+		    <div>{{data.address}}</div>
+		  </ion-item>
+		 <ion-item lines="none">
+			  <ion-label>{{'Notes' | translate}}</ion-label>
+			  <div>{{data.notes}}</div>
+			</ion-item>
+    </div>
+    <div *ngIf="!showButton">
+    	<img *ngFor="let item of imageList" src="https://www.artisanideas.co.nz/itab/database/styled/{{item.data | reverseStr}}">
+    </div>
+    <div class="width-100">
+    	<ion-button (click)="doRemove()" color="danger">
+    		<ion-icon slot="start" name="trash"></ion-icon>
+				{{'Delete' | translate}}
+			</ion-button>
+		</div>
+		<div class="width-100">
+    	<ion-button (click)="doSave()" class="ion-button-block">{{'Update Entry' | translate}}</ion-button>
+    </div>
+</ion-content>

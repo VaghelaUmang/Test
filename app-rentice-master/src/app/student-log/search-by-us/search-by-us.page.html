@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar>
+	  <ion-buttons slot="start">
+      <ion-button routerLink="/home" *ngIf="!fromRequestPage">
+        <ion-icon slot="icon-only" name="home"></ion-icon>
+      </ion-button>
+      <ion-button style="max-width: 130px; white-space: normal;" routerLink="/request-summary" *ngIf="fromRequestPage">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+        Return to Request
+      </ion-button>
+    </ion-buttons>
+	  <ion-title>{{qualName}}</ion-title>
+	  <ion-buttons slot="end">
+	  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="menu-card" routerLink="/main">
+        <ion-card-content>
+          {{'Studentlog_Text1' | translate}}
+    </ion-card-content>
+    </ion-card>
+
+	<div style="position: fixed;z-index: -10;top: -8000px;">
+    <table style="display: block;" id="my-table11" [innerHTML]="tableSummaryHtml"></table>
+  </div>
+  <div class="list top-list">
+    <div class="border">
+      <ion-item *ngIf="user.qual == null || user.qual == ''">
+        {{'Studentlog_Text2' | translate}}
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'Status' | translate}}</ion-label>
+        <ion-select  [(ngModel)]="data.status1" placeholder="{{'Select One' | translate}}" (ionChange)="changeStatus()">
+          <ion-select-option  value="Not Assessed">{{'Not Assessed' | translate}}</ion-select-option>
+          <ion-select-option  value="Incomplete">{{'Incomplete' | translate}}</ion-select-option>
+          <ion-select-option  value="In Progress">{{'In Progress' | translate}}</ion-select-option>
+          <ion-select-option  value="Finished">{{'Finished' | translate}}</ion-select-option>
+          <ion-select-option  value="Employer Confirmed">{{'Employer Confirmed' | translate}}</ion-select-option>
+          <ion-select-option  value="Completed">{{'Completed' | translate}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'Type' | translate}}</ion-label>
+        <ion-select  [(ngModel)]="data.type" placeholder="{{'Select One' | translate}}" (ionChange)="changeType()">
+          <ion-select-option  value="theory">{{'Theory' | translate}}</ion-select-option>
+          <ion-select-option  value="practical">{{'Practical' | translate}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button expand="block" (click)="clearFilter()">{{'Clear' | translate}}</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" (click)="presentAlertRadio()">{{'Export to PDF' | translate}}</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+  <div>
+    <ion-list *ngFor="let item of unitSummary" class="main-item">
+      <ion-list-header>
+        <ion-row>
+          <ion-col class="name" (click)="item.unit.expand = !item.unit.expand">
+            <h4>{{item.unit.unit}} {{item.unit.name}}</h4>
+          </ion-col>
+          <ion-col class="text-right">
+            <h6 [ngClass]="{'inprogress': item.unit.status == 'In Progress', 'finished': item.unit.status == 'Finished', 'completed': item.unit.status == 'Completed'}">{{item.unit.status}}</h6>
+          </ion-col>
+        </ion-row>
+      </ion-list-header>
+      <ion-list *ngIf="item.unit.expand">
+        <div *ngIf="item.element.length > 0">
+          <ion-item>
+            <ion-label>{{'Select All' | translate}}</ion-label>
+            <ion-checkbox slot="start" (ionChange)="selectAll(item)"></ion-checkbox>
+           </ion-item>
+        </div>
+        <ion-item *ngFor="let subitem of item.element" class="sub-item" (click)="goUpdatePage(item, subitem)">
+          <ion-row>
+            <ion-col class="name">
+              <h5>{{subitem.name}}</h5>
+            </ion-col>
+            <ion-col class="text-right">
+              <h6 [ngClass]="{'inprogress': subitem.status=='In Progress', 'finished': subitem.status=='Finished', 'completed': subitem.status=='Completed'}">{{subitem.status}}</h6>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </ion-list>
+  </div>
+</ion-content>

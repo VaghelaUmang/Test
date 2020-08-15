@@ -1,0 +1,164 @@
+// http://ionicframework.com/docs/theming/
+.select-text {
+  white-space: pre-wrap !important;
+}
+@import '~@ionic/angular/css/core.css';
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+input[type="file"] {
+      background: rgba(230, 230, 230,1);
+      padding: 1em;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 16px;
+    width: 100%;
+    color: white;
+    background-color: #3880ff;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.alert-checkbox-icon {
+    top: -8px !important;
+}
+
+.alert-wrapper.sc-ion-alert-md {
+  min-width: 300px;
+}
+
+.alert-checkbox-label {
+    white-space: normal !important;
+    overflow: scroll;
+    height: 55px;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    /* line-height: 49px; */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.alert-checkbox-label.sc-ion-alert-ios {
+    padding: 7px;
+}
+
+.alert-checkbox-label.sc-ion-alert-md {
+    padding: 13px 26px 13px 53px;
+}
+
+.alert-radio-label {
+    white-space: normal !important;
+    overflow: scroll;
+    height: 55px;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    /* line-height: 49px; */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.alert-radio-label.sc-ion-alert-ios {
+    padding: 7px;
+}
+
+.alert-radio-label.sc-ion-alert-md {
+    padding: 13px 26px 13px 53px;
+}
+
+.select-text { white-space: pre-line;}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  .photo {
+    min-width: 80px;
+  }
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+td {
+  min-width: 80px;
+  img {
+    min-width: 80px;
+  }
+}
+
+.inprogress {
+  background: #d3d3d3;
+}
+.finished {
+  background: #90EE90;
+}
+.completed {
+  background: green;
+}
+
+.select-all-alert {
+  .alert-message {
+    position: absolute;
+    bottom: 20px;
+    height: 65px;
+  }
+  .alert-button-group {
+    margin-top: 40px;
+  }
+}
+
+h4 {
+  font-size: 17px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
+h5 {
+  font-size: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
+h6 {
+  font-size: 13px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: 400;
+  white-space: nowrap;
+}

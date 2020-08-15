@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+   <ion-buttons slot="start">
+	    <ion-button routerLink="/activity">
+	      <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+	    </ion-button>
+	  </ion-buttons>
+    <ion-title>{{ 'Confirm Entry' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<div class="row" *ngIf="data && data.imageList">
+    <img *ngFor="let item of data.imageList" src="{{item.data}}">
+  </div>
+  <div>
+    <ion-item>
+		  <ion-label>{{ 'Sub Category' | translate }}</ion-label>
+		  <div>{{data.sub_category_name}}</div>
+		</ion-item>
+		<ion-item>
+		  <ion-label>{{ 'Main Category' | translate }}</ion-label>
+		  <div>{{data.main_category_name}}</div>
+		</ion-item>
+		<ion-item>
+		  <ion-label>{{ 'Activity' | translate }}</ion-label>
+		  <span *ngIf="data && data.inventory_itemList">
+		  	<div *ngFor="let item of data.inventory_itemList">{{item}},</div>
+		  </span>
+		</ion-item>
+		<ion-item>
+		  <ion-label>{{ 'Project' | translate }}</ion-label>
+		  <div>{{data.address}}</div>
+		</ion-item>
+		<ion-item>
+		  <ion-label>{{ 'Hours Completed' | translate }}</ion-label>
+		  <div>{{data.inventory_value}}</div>
+		</ion-item>
+		<ion-item>
+		  <ion-label>{{ 'Date' | translate }}</ion-label>
+		  <div>{{data.inventory_purchased}}</div>
+		</ion-item>
+		<ion-item>
+		  <ion-label>{{ 'Notes' | translate }}</ion-label>
+		  <ion-textarea rows="3" cols="20" [(ngModel)]="data.notes" readonly></ion-textarea>
+		</ion-item>
+		<ion-item>
+		  <ion-label>{{ 'Added to Time Sheet' | translate }}</ion-label>
+		  <ion-input type="text" [(ngModel)]="data.savetimesheet" readonly></ion-input>
+		</ion-item>
+		<ion-item *ngIf="data.savetimesheet == 'true' || data.savetimesheet">
+		  <ion-label>{{ 'Start time' | translate }}</ion-label>
+		  <div>{{data.starttime}}</div>
+		</ion-item>
+		<ion-item *ngIf="data.savetimesheet == 'true' || data.savetimesheet">
+		  <ion-label>{{ 'Finish time' | translate }}</ion-label>
+		  <div>{{data.finishtime}}</div>
+		</ion-item>
+  </div>
+	<div>
+		<ion-button routerLink="/activity" class="button button-positive button-block">{{ 'Return and Edit' | translate }}</ion-button>
+	</div>
+	<div>
+    <ion-button (click)="doSave()" class="button button-positive button-block">{{ 'Save & Enter Another' | translate }}</ion-button>
+  </div>
+  <div>
+    <ion-button (click)="doSaveAndReturn()" class="button button-positive button-block">{{ 'Save & Return Menu' | translate }}</ion-button>
+  </div>
+</ion-content>
